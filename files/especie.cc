@@ -1,15 +1,12 @@
 #include "especie.hh"
 
 
-
 especie::especie()
 {
 
 }
 
 especie::~especie(){}
-
-
 
 
 int especie::consultar_numero_parells() const
