@@ -14,11 +14,8 @@ int main()
 	POBL.llegir();
 
 	string comando;
-	bool acabat = false;
 
-
-
-	while (not acabat and cin >> comando)
+	while (cin >> comando)
 	{
 		if (comando == "anadir_individuo")
 		{
@@ -58,7 +55,7 @@ int main()
 
 		else if(comando == "acabar")
 		{
-			acabat = true;
+			return 0;
 		}
 
 	}
