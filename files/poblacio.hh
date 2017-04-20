@@ -2,10 +2,6 @@
 #define CONJ_IND_HH
 
 #include "individu.hh"
-//#include "especie.hh"
-#include "Excepcio.hh"
-
-#include <vector>
 #include <map>
 
 using namespace std;

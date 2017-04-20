@@ -1,7 +1,6 @@
 #ifndef ESPECIE_HH
 #define ESPECIE_HH
 
-
 #include <iostream>
 #include <vector>
 
