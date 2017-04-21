@@ -13,7 +13,7 @@
 
 #ifndef NO_DIAGRAM 
 #include <iostream>
-#include <vector>
+#include <list>
 #endif
 
 /** @class individu
@@ -27,7 +27,7 @@ class individu
 private:
 
 	string NOM;
-	vector<pair<vector<int>, vector<int>>> COD_GEN ;
+	vector<pair<list<int>, list<int>>> COD_GEN ;
 	especie EspInd;
 	char sex1 = 'X';
 	char sex2;
