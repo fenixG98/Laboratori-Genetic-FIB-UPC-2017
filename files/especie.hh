@@ -1,67 +1,88 @@
+/** @file especie.hh
+ @brief Especificación de la clase especie
+ */
+
 #ifndef ESPECIE_HH
 #define ESPECIE_HH
 
+#ifndef NO_DIAGRAM
 #include <iostream>
 #include <vector>
+#endif
 
+/** @class especie
+ @brief Representa una especie de individuo.
 
-using namespace std;
-
+ Puede contener una descripcion de la especie. Puede usarse para crear una poblacion de esta especie.
+ */
 
 class especie
 {
-	// Tipus de modul: dades
-	// Descripcio del tipus:
+
 private:
 
-
 	int N;
-	vector<int> l;
+	std::vector<int> l;
 	int lx;
 	int ly;
-
-
-	/*
-	 Invariant de la representacio:
-  */
 
 public:
 
 	//Constructores
 
+	/** @brief Creadora por defecto.
+	 Se ejecuta automáticamente al declarar una especie.
+	 \pre <em>cierto</em>
+	 \post El resultado es una especie sin descripcion
+	 \coste Constante */
 	especie();
-	/* Pre: cert */
-	/* Post: el resultat es un 
-	 */
+
+	/** @brief Destructora por defecto.
+	 \pre <em>cierto</em>
+	 \post Destruye la especie
+	 \coste Constante*/
 	~especie();
-
-	//Modificadores
-
 
 	//Consultores
 
+	/** @brief Consulta el numero de pares de cromosomas no sexuales.
+	 \pre <em>cierto</em>
+	 \post El resultado es el numero de pares de cromosomas normales
+	 \coste Constante  */
 	int consultar_numero_parells() const;
 
-
+	/** @brief Consulta la longitud del cromosoma sexual X.
+	 \pre <em>cierto</em>
+	 \post El resultado es la longitud del cromosoma X
+	 \coste Constante  */
 	int consultar_longitud_x() const;
 
-
+	/** @brief Consulta la longitud del cromosoma sexual Y.
+	 \pre <em>cierto</em>
+	 \post El resultado es la longitud del cromosoma Y
+	 \coste Constante  */
 	int consultar_longitud_y() const;
 
-
-	vector <int> consultar_longitud() const;
+	/** @brief Consulta la longitud de un cromosoma normal.
+	 \pre <em>cierto</em>
+	 \post El resultado es la longitud del cromosoma normal i
+	 \coste Constante  */
+	int consultar_longitud_i(int i) const;
 
 	// Lectura i escriptura
-	
-	void llegir();
-	/* Pre: estan preparats al canal estandard d'entrada un enter , que representa el nombre de parells
-	 de cromosomes que llegirem, i les mides de tals cromosomes*/
-	/* Post: el parametre implicit conte la informacio llegida del canal estandard d'entrada */
 
+	/** @brief Operación de lectura.
+	 \pre <em>Estan preparados en el canal estandar de entrada un entero que representa el numero de pares de cromosomas normlaes, las longitudes de dichos pares y las longitudes de los cromosomas sexuales</em>
+	 \post Lee la descripcion del parámetro implícito por el canal estándar de entrada
+	 \coste */
+	 void llegir();
+
+	/** @brief Operación de escritura.
+	 \pre <em>cierto</em>
+	 \post Escribe el contenido del parámetro implícito por el canal estándar de salida
+	 \coste */
 	void escriure() const;
-	/* Pre: cert */
-	/* Post: s'han escrit pel canal estandard de sortida els parametres de
-	 la especie*/
 
 };
+
 #endif

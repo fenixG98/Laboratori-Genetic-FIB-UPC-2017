@@ -93,12 +93,12 @@ void individu::llegir()
 
 	for (int i = 1; i <= EspInd.consultar_numero_parells(); ++i) // accedim a cada pair
 	{
-		for (int j = 0; j < EspInd.consultar_longitud()[i]; ++j)
+		for (int j = 0; j < EspInd.consultar_longitud_i(i); ++j)
 		{
 			cin >> x;
 			COD_GEN[i].first.push_back(x);
 		}
-		for (int j = 0; j < EspInd.consultar_longitud()[i]; ++j)
+		for (int j = 0; j < EspInd.consultar_longitud_i(i); ++j)
 		{
 			cin >> x;
 			COD_GEN[i].second.push_back(x);
@@ -137,10 +137,10 @@ void individu::escriure_particular() const
 	for (int i = 1; i < COD_GEN.size(); ++i) // accedim a cada pair
 	{
 		cout << i << ".1: ";
-		for (int j = 0; j < EspInd.consultar_longitud()[i]; ++j) cout << COD_GEN[i].first[j] << ' ';
+		for (int j = 0; j < EspInd.consultar_longitud_i(i); ++j) cout << COD_GEN[i].first[j] << ' ';
 		cout << endl;
 		cout << i << ".2: ";
-		for (int j = 0; j < EspInd.consultar_longitud()[i]; ++j) cout << COD_GEN[i].second[j] << ' ';
+		for (int j = 0; j < EspInd.consultar_longitud_i(i); ++j) cout << COD_GEN[i].second[j] << ' ';
 		cout << endl;
 	}
 }

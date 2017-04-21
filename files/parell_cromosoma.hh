@@ -2,7 +2,7 @@
 #define parell_cromosoma_hpp
 
 #include <iostream>
-#include <vector>
+#include <list>
 
 using namespace std;
 
@@ -16,8 +16,8 @@ private:
 
 	int l;
 
-	vector <bool> c1;
-	vector <bool> c2;
+	list <bool> c1;
+	list <bool> c2;
 
 	/*
 	 Invariant de la representacio:

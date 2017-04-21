@@ -9,8 +9,8 @@ parell_cromosoma::parell_cromosoma()
 
 parell_cromosoma::parell_cromosoma(int l, int i)
 {
-	c1 = vector <bool> (l);
-	c2 = vector <bool> (l);
+	c1 = list <bool> (l);
+	c2 = list <bool> (l);
 	this->i = i;
 
 }
@@ -23,7 +23,7 @@ int parell_cromosoma::consultar_longitud() const
 {
 	return l;
 }
-
+/*
 void parell_cromosoma::llegir()
 {
 	bool x;
@@ -41,5 +41,5 @@ void parell_cromosoma::llegir()
 
 void parell_cromosoma::escriure() const
 {
-
 }
+ */

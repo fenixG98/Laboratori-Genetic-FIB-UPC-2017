@@ -41,14 +41,6 @@ int poblacio::mida_maxima() const
 	return MAX_NIND;
 }
 
-especie poblacio::especie() const
-{
-	return esp;
-}
-
-
-/////////////////////////////////////////////////////////////////////////////////////////////////////////////////// DUES FUNCIONS D'ARBRES
-
 
 void poblacio::llegir()
 {

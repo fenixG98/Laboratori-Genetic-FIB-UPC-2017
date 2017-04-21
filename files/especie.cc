@@ -24,25 +24,25 @@ int especie::consultar_longitud_y() const
 	return ly;
 }
 
-vector <int> especie::consultar_longitud() const
+int especie::consultar_longitud_i(int i) const
 {
-	return l;
+	return l[i];
 }
 
 void especie::llegir()
 {
 	int x;
-	cin >> N;
+	std::cin >> N;
 	for (int i = 0; i <= N; ++i)
 	{
-		cin >> x;
+		std::cin >> x;
 		l.push_back(x);
 	}
-	cin >> lx >> ly;
+	std::cin >> lx >> ly;
 }
 
 void especie::escriure() const
 {
-	cout << N << ' ' << lx << ' ' << ly << endl;
-	for (int i = 0; i < l.size(); ++i) cout << l[i] << ' ';
+	std::cout << N << ' ' << lx << ' ' << ly << std::endl;
+	for (int i = 0; i < l.size(); ++i) std::cout << l[i] << ' ';
 }
