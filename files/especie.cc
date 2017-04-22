@@ -3,7 +3,8 @@
 
 especie::especie()
 {
-
+	N = lx = ly = 0;
+	l = vector<int> (0);
 }
 
 especie::~especie(){}
@@ -39,10 +40,4 @@ void especie::llegir()
 		l.push_back(x);
 	}
 	std::cin >> lx >> ly;
-}
-
-void especie::escriure() const
-{
-	std::cout << N << ' ' << lx << ' ' << ly << std::endl;
-	for (int i = 0; i < l.size(); ++i) std::cout << l[i] << ' ';
 }

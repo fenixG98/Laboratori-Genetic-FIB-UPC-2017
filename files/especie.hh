@@ -15,16 +15,16 @@
 
  Puede contener una descripcion de la especie. Puede usarse para crear una poblacion de esta especie.
  */
-
+using namespace std;
 class especie
 {
 
 private:
 
 	int N;
-	std::vector<int> l;
 	int lx;
 	int ly;
+	vector<int> l;
 
 public:
 
@@ -76,12 +76,6 @@ public:
 	 \post Lee la descripcion del parámetro implícito por el canal estándar de entrada
 	 \coste */
 	 void llegir();
-
-	/** @brief Operación de escritura.
-	 \pre <em>cierto</em>
-	 \post Escribe el contenido del parámetro implícito por el canal estándar de salida
-	 \coste */
-	void escriure() const;
 
 };
 

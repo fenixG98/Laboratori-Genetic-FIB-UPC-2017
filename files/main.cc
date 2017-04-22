@@ -32,9 +32,10 @@ int main()
 
 	especie esp;
 	esp.llegir();
-	
+	// especie creada
 	poblacio POBL(esp);
 	POBL.llegir();
+	//poblacio llegida
 
 	string comando;
 
@@ -42,11 +43,14 @@ int main()
 	{
 		if (comando == "anadir_individuo")
 		{
-
 			individu ind(esp);
+			string nom;
+			cin >> nom;
 			ind.llegir();
-			cout << "añadir_individuo " << ind.consultar_NOM() << endl;
-			POBL.afegir_individu(ind);
+			cout << "añadir_individuo " << nom << endl;
+
+			if (not POBL.existeix_individu(nom)) POBL.afegir_individu(nom, ind);
+			else cout << "  error" << endl;
 		}
 
 		else if(comando == "escribir_poblacion")
@@ -54,6 +58,21 @@ int main()
 			cout << "escribir_poblacion" << endl;
 			POBL.escriure();
 		}
+
+		else if(comando == "escribir_genotipo")
+		{
+			string nom;
+			cin >> nom;
+			cout << "escribir_genotipo " << nom << endl;
+			if (POBL.existeix_individu(nom))
+			{
+				individu ind = POBL.individu_nom(nom);
+				ind.escriure();
+			}
+			else cout << "  error" << endl;
+
+		}
+
 		else if(comando == "reproduccion_sexual")
 		{
 			cout << "operacion nula" << endl;
@@ -69,13 +88,6 @@ int main()
 			cout << "operacion nula" << endl;
 		}
 
-		else if(comando == "escribir_genotipo")
-		{
-			string ind;
-			cin >> ind;
-			POBL.escriure_particular(ind);
-		}
-
 		else if(comando == "acabar")
 		{
 			return 0;
@@ -83,5 +95,22 @@ int main()
 
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

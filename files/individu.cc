@@ -1,28 +1,23 @@
 #include "individu.hh"
 
-/* Constants */
-const char *ERI1 = "error";
-const char *ERI2 = "no tiene padre";
-const char *ERI3 = "no tiene madre";
-
-
-individu::individu(){
+individu::individu()
+{
 	amb_mare = amb_pare = false;
 	sex1 = 'X';
+	MARE = NULL;
+	PARE = NULL;
 }
 
-individu::individu(especie esp){
+individu::individu(especie esp)
+{
 	amb_mare = amb_pare = false;
 	sex1 = 'X';
-	EspInd = esp;
+	this->esp = esp;
+	MARE = NULL;
+	PARE = NULL;
 }
 
 individu::~individu(){}
-
-string individu::consultar_NOM() const
-{
-	return NOM;
-}
 
 string individu::consultar_SEXE() const
 {
@@ -36,7 +31,7 @@ bool individu::te_pare() const
 
 individu individu::consultar_PARE() const
 {
-	if (not amb_pare) throw Excepcio(ERI2);
+	if (not amb_pare) cout << "no tiene padre" << endl;
 	return *PARE;
 }
 
@@ -47,25 +42,16 @@ bool individu::te_mare() const
 
 individu individu::consultar_MARE() const
 {
-	if (not amb_mare) throw Excepcio(ERI3);
+	if (not amb_mare) cout << "no tiene madre" << endl;
 	return *MARE;
-}
-
-
-
-void individu::afegir_especie(const especie& esp)
-{
-	EspInd = esp;
 }
 
 void individu::llegir()
 {
+	COD_GEN = vector<pair<list<bool>, list<bool>>> (esp.consultar_numero_parells()+1);
 
-	COD_GEN = vector<pair<vector<int>, vector<int>>> (EspInd.consultar_numero_parells()+1);
+	int d = esp.consultar_longitud_x();
 
-	int d = EspInd.consultar_longitud_x();
-
-	cin >> NOM;
 	cin >> sex2;
 
 	if (sex2=='X') SEXE = "femeni";
@@ -73,12 +59,11 @@ void individu::llegir()
 	else if (sex2=='Y')
 	{
 		SEXE = "masculi";
-		d = EspInd.consultar_longitud_y();
+		d = esp.consultar_longitud_y();
 	}
 
-	// nom i sexe
 	int x;
-	for (int i = 0; i < EspInd.consultar_longitud_x(); ++i)
+	for (int i = 0; i < esp.consultar_longitud_x(); ++i)
 	{
 		cin >> x;
 		COD_GEN[0].first.push_back(x);
@@ -91,75 +76,41 @@ void individu::llegir()
 
 	}
 
-	for (int i = 1; i <= EspInd.consultar_numero_parells(); ++i) // accedim a cada pair
-	{
-		for (int j = 0; j < EspInd.consultar_longitud_i(i); ++j)
+	for (int i = 1; i <= esp.consultar_numero_parells(); ++i) 	{
+		for (int j = 0; j < esp.consultar_longitud_i(i); ++j)
 		{
 			cin >> x;
 			COD_GEN[i].first.push_back(x);
 		}
-		for (int j = 0; j < EspInd.consultar_longitud_i(i); ++j)
+		for (int j = 0; j < esp.consultar_longitud_i(i); ++j)
 		{
 			cin >> x;
 			COD_GEN[i].second.push_back(x);
 		}
 	}
-
-
 }
-
 
 void individu::escriure() const
 {
-	cout << NOM << ' ' << sex1 << sex2 << " (";
-	if (not te_pare()) cout << "$";
-	else cout << PARE->consultar_NOM();
-	cout << ',';
-	if (not te_mare()) cout << "$";
-	else cout << MARE->consultar_NOM();
-	cout << ')';
-	cout << endl;
-}
+	int d = esp.consultar_longitud_y();
+	if (sex2=='X') d = esp.consultar_longitud_x();
 
-void individu::escriure_particular() const
-{
-	int d = EspInd.consultar_longitud_y();
-	if (sex2=='X') d = EspInd.consultar_longitud_x();
-	cout << "escribir_genotipo " << NOM << endl;
+	cout << "  " << sex1 << ": ";
+	for(std::list<bool>::const_iterator it = COD_GEN[0].first.begin(); it != COD_GEN[0].first.end(); ++it) cout << *it << ' ';
+	cout << endl;
 
-	// nom
-	cout << sex1 << ": ";
-	for (int i = 0; i < EspInd.consultar_longitud_x(); ++i) cout << COD_GEN[0].first[i] << ' ';
+	cout << "  " << sex2 << ": ";
+	for(std::list<bool>::const_iterator it = COD_GEN[0].second.begin(); it != COD_GEN[0].second.end(); ++it) cout << *it << ' ';
 	cout << endl;
-	cout << sex2 << ": ";
-	for (int i = 0; i < d; ++i) cout << COD_GEN[0].second[i] << ' ';
-	cout << endl;
-	for (int i = 1; i < COD_GEN.size(); ++i) // accedim a cada pair
+
+	for (int i = 1; i < COD_GEN.size(); ++i)
 	{
-		cout << i << ".1: ";
-		for (int j = 0; j < EspInd.consultar_longitud_i(i); ++j) cout << COD_GEN[i].first[j] << ' ';
+		cout << "  " << i << ".1: ";
+		for(std::list<bool>::const_iterator it = COD_GEN[i].first.begin(); it != COD_GEN[i].first.end(); ++it) cout << *it << ' ';
 		cout << endl;
-		cout << i << ".2: ";
-		for (int j = 0; j < EspInd.consultar_longitud_i(i); ++j) cout << COD_GEN[i].second[j] << ' ';
+
+		cout << "  " << i << ".2: ";
+		for(std::list<bool>::const_iterator it = COD_GEN[i].second.begin(); it != COD_GEN[i].second.end(); ++it) cout << *it << ' ';
 		cout << endl;
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

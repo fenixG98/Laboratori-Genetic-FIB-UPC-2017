@@ -5,11 +5,7 @@
 #ifndef INDIVIDU_HH
 #define INDIVIDU_HH
 
-
-
 #include "especie.hh"
-#include "Excepcio.hh"
-//#include "parell_cromosoma.hh"
 
 #ifndef NO_DIAGRAM 
 #include <iostream>
@@ -20,15 +16,17 @@
  @brief Representa un individuo.
 
  Contiene la informacion de un individuo (nombre, sexo, codigo genetico y padres) de la especie de su poblacion. Puede usarse para realizar experimentos con un solo individuo.*/
+using namespace std;
 
 class individu
 {
 
 private:
 
-	string NOM;
-	vector<pair<list<int>, list<int>>> COD_GEN ;
-	especie EspInd;
+	vector<pair<list<bool>, list<bool>>> COD_GEN ;
+
+	especie esp;
+
 	char sex1 = 'X';
 	char sex2;
 	string SEXE;
@@ -61,21 +59,7 @@ public:
 	 \coste Constante  */
 	~individu();
 
-	//Modificadores
-
-	/** @brief Añade la especie al individuo
-	 \pre <em>El p.i. no tiene especie</em>
-	 \post El parámetro implícito pasa a ser de la especie esp
-	 \coste Constante */
-	void afegir_especie(const especie& esp);
-
 	//Consultores
-
-	/** @brief Consulta el nombre del individuo.
-	 \pre <em>El p.i. tiene nombre</em>
-	 \post El resultado es el nombre del individuo
-	 \coste Constante  */
-	string consultar_NOM() const;
 
 	/** @brief Consulta el sexo del individuo.
 	 \pre <em>El p.i. tiene sexo</em>
@@ -117,15 +101,9 @@ public:
 
 	/** @brief Operación de escritura.
 	 \pre <em>cierto</em>
-	 \post Escribe el nombre, los cromosomas sexuales y los padres (si tiene) del parámetro implícito por el canal estándar de salida
-	 \coste */
-	void escriure() const;
-
-	/** @brief Operación de escritura.
-	 \pre <em>Existe un individuo con el nombre ind en la poblacion</em>
 	 \post Escribe el nombre, y su codigo genetico por el canal estándar de salida
 	 \coste */
-	void escriure_particular() const;
+	void escriure() const;
 
 };
 #endif
