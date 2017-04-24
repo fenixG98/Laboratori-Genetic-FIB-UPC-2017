@@ -13,6 +13,7 @@
 #include "especie.hh"
 #include "poblacio.hh"
 #include "individu.hh"
+#include "arbre.hh"
 
 
 #ifndef NO_DIAGRAM // explicado en Prenda.hh
