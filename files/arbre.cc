@@ -1,5 +1,6 @@
 #include "arbre.hh"
 
+
 Arbre::node_arbre* Arbre::copia_node_arbre(node_arbre* m)
 {
 	node_arbre* n;
