@@ -1,5 +1,6 @@
 #include "individu.hh"
 
+
 individu::individu()
 {
 	amb_mare = amb_pare = false;
@@ -7,6 +8,7 @@ individu::individu()
 	MARE = NULL;
 	PARE = NULL;
 }
+
 
 individu::individu(especie esp)
 {
