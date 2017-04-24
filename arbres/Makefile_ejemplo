@@ -3,7 +3,7 @@ OPCIONS = -D_JUDGE_ -D_GLIBCXX_DEBUG -O2 -Wall -Wextra -Wno-uninitialized -Wno-s
 program.exe: program.o CuaIOEstudiant.o Estudiant.o
 	     g++ -o program.exe program.o CuaIOEstudiant.o Estudiant.o
 
-Estudiant.o:  Estudiant.cc Estudiant.hh
+Estudiant.o:  Estudiant.cc Estudiant.hh 
 	      g++ -c Estudiant.cc $(OPCIONS)
 
 CuaIOEstudiant.o: CuaIOEstudiant.cc CuaIOEstudiant.hh
@@ -15,14 +15,3 @@ program.o: program.cc
 clean:
 	rm *.o
 	rm *.exe
-
-
-
-
-
-
-
-
-
-
-	asdas
