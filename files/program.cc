@@ -82,12 +82,13 @@ int main()
 			cin >> a >> b >> c;
 			
 			cout << "reproduccion_sexual" << a << ' ' << b << ' '<< c << endl;
-			if ((not POBL.existeix_individu(a) or not POBL.existeix_individu(b) or POBL.existeix_individu(c)) and not POBL.compatibles(a,b)) cout << "  error" << endl;
-			else
+
+			if ((POBL.existeix_individu(a) and POBL.existeix_individu(b) and not POBL.existeix_individu(c)) and POBL.compatibles(a,b))
 			{
 				individu fill(POBL.individu_nom(a),POBL.individu_nom(b));
 				POBL.afegir_individu(c, fill);
 			}
+			else cout << "  error" << endl;
 		}
 
 		else if(comando == "escribir_arbol_genealogico")
@@ -102,7 +103,13 @@ int main()
 
 		else if(comando == "completar_arbol_genealogico")
 		{
-			cout << "operacion nula" << endl;
+			string nom;
+			cin >> nom;
+
+			Arbre ap;
+			ap.llegir();
+
+			if (POBL.existeix_individu(nom)) POBL.completar_ap(ap);
 		}
 
 		else if(comando == "acabar")

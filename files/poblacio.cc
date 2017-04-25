@@ -24,8 +24,6 @@ bool poblacio::compatibles(const string a,const string b)
 	return vind[a].consultar_SEXE() != vind[b].consultar_SEXE();
 }
 
-
-
 bool poblacio::existeix_individu(const string nom) const
 {
 	if (vind.count(nom)==0) return false;

@@ -6,7 +6,7 @@
 #define INDIVIDU_HH
 
 #include "especie.hh"
-#include "arbre.hh"
+#include "Arbre.hh"
 
 
 #ifndef NO_DIAGRAM 
