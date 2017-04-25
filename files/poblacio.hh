@@ -57,7 +57,7 @@ public:
 	 \pre <em>Los  dos primeros nombres si estan entre los individuos del p.i. (existen) y el tercero no esta (no existe). Deben ser de sexo opuesto, no ser hermanos ni por parte de padre ni de madre, y no ser ninguno de los dos antecesor del otro</em>
 	 \post El parámetro implícito pasa a contener el individuo fill fruto de la reproduccion de mare y pare
 	 \coste Constante */
-	void reproduir(const string mare, const string pare, const string fill); ////////////////////////////////// CONSULTAR I CORREGIR PARAMETRES
+	void reproduir(const string mare, const string pare, const string fill);
 	
 	//Consultores
 
@@ -85,8 +85,6 @@ public:
 	 \coste Constante  */
 	bool existeix_individu(const string nom) const;
 
-
-
 	// Lectura i escriptura
 	
 	/** @brief Operación de lectura.
@@ -99,6 +97,12 @@ public:
 	 \pre <em>cierto</em>
 	 \post Escribe el nombre, los cromosomas sexuales y los padres (si tiene) del parámetro implícito por el canal estándar de salida */
 	void escriure() const;
+
+	/** @brief Operación de escritur del arbre genealogic.
+	 \pre <em>cierto</em>
+	 \post Escribe el grafo-arbol(binario) de sus ascendientes en preorden.
+	 \coste */
+	void escriure_arbre(const string nom) const;
 
 };
 

@@ -6,6 +6,8 @@
 #define INDIVIDU_HH
 
 #include "especie.hh"
+#include "arbre.hh"
+
 
 #ifndef NO_DIAGRAM 
 #include <iostream>
@@ -23,15 +25,16 @@ class individu
 
 private:
 
-	vector<pair<list<bool>, list<bool>>> COD_GEN ;
-
 	especie esp;
+	vector<pair<list<bool>, list<bool>>> COD_GEN ;
 
 	char sex1 = 'X';
 	char sex2;
 	string SEXE;
+
 	bool amb_pare;
 	individu* PARE;
+
 	bool amb_mare;
 	individu* MARE;
 

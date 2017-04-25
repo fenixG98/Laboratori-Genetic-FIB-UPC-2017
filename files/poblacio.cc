@@ -22,13 +22,13 @@ void poblacio::reproduir(const string mare, const string pare, const string fill
 {
 
 }
-bool poblacio::existeix_individu(string nom) const
+bool poblacio::existeix_individu(const string nom) const
 {
 	if (vind.count(nom)==0) return false;
 	return true;
 }
 
-individu poblacio::individu_nom(string nom) const
+individu poblacio::individu_nom(const string nom) const
 {
 	return vind.find(nom)->second;
 }
@@ -63,3 +63,13 @@ void poblacio::escriure() const
 		cout << endl;
 	}
 }
+
+
+void poblacio::escriure_arbre(const string nom) const
+{
+
+}
+
+
+
+

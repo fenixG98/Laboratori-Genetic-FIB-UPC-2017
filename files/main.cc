@@ -65,6 +65,7 @@ int main()
 			string nom;
 			cin >> nom;
 			cout << "escribir_genotipo " << nom << endl;
+			
 			if (POBL.existeix_individu(nom))
 			{
 				individu ind = POBL.individu_nom(nom);
@@ -76,12 +77,20 @@ int main()
 
 		else if(comando == "reproduccion_sexual")
 		{
-			cout << "operacion nula" << endl;
+			string a, b, c;
+			cin >> a >> b >> c;
+			cout << "reproduccion_sexual" << a << ' ' << b << ' '<< c << endl;
+			POBL.reproduir(a, b, c);
 		}
 
 		else if(comando == "escribir_arbol_genealogico")
 		{
-			cout << "operacion nula" << endl;
+			string nom;
+			cin >> nom;
+			cout << "escribir_arbol_genealogico" << nom << endl;
+
+			if (POBL.existeix_individu(nom)) POBL.escriure_arbre(nom);
+			else cout << "  error" << endl;
 		}
 
 		else if(comando == "completar_arbol_genealogico")
