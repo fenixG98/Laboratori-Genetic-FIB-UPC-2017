@@ -16,7 +16,7 @@
 #include "arbre.hh"
 
 
-#ifndef NO_DIAGRAM // explicado en Prenda.hh
+#ifndef NO_DIAGRAM
 #include <iostream>
 #include <string>
 //#include "arbre.hh>
@@ -48,6 +48,7 @@ int main()
 			string nom;
 			cin >> nom;
 			ind.llegir();
+
 			cout << "añadir_individuo " << nom << endl;
 
 			if (not POBL.existeix_individu(nom)) POBL.afegir_individu(nom, ind);
