@@ -26,9 +26,9 @@ class individu
 private:
 
 	especie esp;
-	vector<pair<list<bool>, list<bool>>> COD_GEN ;
+	vector<pair<list<bool>, list<bool>> > COD_GEN ;
 
-	char sex1 = 'X';
+	char sex1;
 	char sex2;
 	string SEXE;
 
@@ -49,12 +49,20 @@ public:
 	 \coste Constante */
 	individu();
 
-	/** @brief Creadora por defecto.
-	 Se ejecuta automáticamente al declarar una poblacion.
+	/** @brief Creadora a partir de una especie.
+	 Se ejecuta automáticamente al declarar una poblacion con especie.
 	 \pre <em>cierto</em>
 	 \post El resultado es una individuo con especie esp, sin nombre ni codigo genetico ni padres.
 	 \coste Constante */
 	individu(especie esp);
+
+	/** @brief Creadora a partir de dos individuos.
+	 Se ejecuta automáticamente al declarar una poblacion.
+	 \pre <em> individuo a es compatible con b para la reproduccion</em>
+	 \post El resultado es un individuo fruto de la reproduccion sexual de a y b.
+	 \coste Constante */
+	individu(const individu a, const individu b);
+
 
 	/** @brief Destructora por defecto.
 	 \pre <em>cierto</em>

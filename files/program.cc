@@ -80,8 +80,14 @@ int main()
 		{
 			string a, b, c;
 			cin >> a >> b >> c;
+			
 			cout << "reproduccion_sexual" << a << ' ' << b << ' '<< c << endl;
-			POBL.reproduir(a, b, c);
+			if ((not POBL.existeix_individu(a) or not POBL.existeix_individu(b) or POBL.existeix_individu(c)) and not POBL.compatibles(a,b)) cout << "  error" << endl;
+			else
+			{
+				individu fill(POBL.individu_nom(a),POBL.individu_nom(b));
+				POBL.afegir_individu(c, fill);
+			}
 		}
 
 		else if(comando == "escribir_arbol_genealogico")

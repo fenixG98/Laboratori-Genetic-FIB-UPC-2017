@@ -73,9 +73,15 @@ public:
 	 \coste Constante  */
 	int mida_maxima() const;
 
+	/** @brief Consulta si los dos parametros son compatibles para la reproducción.
+	 \pre <em>cierto</em>
+	 \post El resultado es true si son de distitno genero.
+	 \coste Constante  */
+	bool compatibles(const string a,const string b);
+
 	/** @brief Consulta el individuo con nombre nom.
 	 \pre <em>El individuo nom existe en l apoblacion</em>
-	 \post El resultado es el individuo
+	 \post El resultado es el individuo de nombre nom
 	 \coste Constante  */
 	individu individu_nom(const string nom) const;
 

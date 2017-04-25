@@ -18,10 +18,14 @@ void poblacio::afegir_individu(const string nom, const individu& ind)
 	vind[nom]=ind;
 }
 
-void poblacio::reproduir(const string mare, const string pare, const string fill)
-{
 
+bool poblacio::compatibles(const string a,const string b)
+{
+	return vind[a].consultar_SEXE() != vind[b].consultar_SEXE();
 }
+
+
+
 bool poblacio::existeix_individu(const string nom) const
 {
 	if (vind.count(nom)==0) return false;

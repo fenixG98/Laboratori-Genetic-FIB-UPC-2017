@@ -5,8 +5,7 @@ individu::individu()
 {
 	amb_mare = amb_pare = false;
 	sex1 = 'X';
-	MARE = NULL;
-	PARE = NULL;
+	
 }
 
 
@@ -15,8 +14,13 @@ individu::individu(especie esp)
 	amb_mare = amb_pare = false;
 	sex1 = 'X';
 	this->esp = esp;
-	MARE = NULL;
-	PARE = NULL;
+	
+}
+individu::individu(const individu a, const individu b)
+{
+	amb_mare = amb_pare = true;
+	/* ............... */
+
 }
 
 individu::~individu(){}
@@ -31,22 +35,13 @@ bool individu::te_pare() const
 	return amb_pare;
 }
 
-individu individu::consultar_PARE() const
-{
-	if (not amb_pare) cout << "no tiene padre" << endl;
-	return *PARE;
-}
 
 bool individu::te_mare() const
 {
 	return amb_mare;
 }
 
-individu individu::consultar_MARE() const
-{
-	if (not amb_mare) cout << "no tiene madre" << endl;
-	return *MARE;
-}
+
 
 void individu::llegir()
 {
