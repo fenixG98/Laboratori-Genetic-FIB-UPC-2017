@@ -13,19 +13,21 @@
 #include "especie.hh"
 #include "poblacio.hh"
 #include "individu.hh"
-#include "arbre.hh"
-
+//#include "arbre_parcial.hh"
 
 #ifndef NO_DIAGRAM
+#include "arbre.hh"
 #include <iostream>
 #include <string>
-//#include "arbre.hh>
+//#include "Arbre.hh"
 #endif
 
 /** @brief Programa principal para la practica <em>Experimentos genéticos en laboratorio</em>.
  */
 
 using namespace std;
+
+
 
 int main()
 {
@@ -34,8 +36,8 @@ int main()
 	especie esp;
 	esp.llegir();
 	// especie creada
-	poblacio POBL(esp);
-	POBL.llegir();
+	poblacio POBL;
+	POBL.llegir(esp);
 	//poblacio llegida
 
 	string comando;
@@ -44,10 +46,10 @@ int main()
 	{
 		if (comando == "anadir_individuo")
 		{
-			individu ind(esp);
+			individu ind;
 			string nom;
 			cin >> nom;
-			ind.llegir();
+			ind.llegir(esp);
 
 			cout << "añadir_individuo " << nom << endl;
 
@@ -70,7 +72,7 @@ int main()
 			if (POBL.existeix_individu(nom))
 			{
 				individu ind = POBL.individu_nom(nom);
-				ind.escriure();
+				ind.escriure(esp);
 			}
 			else cout << "  error" << endl;
 
@@ -80,12 +82,12 @@ int main()
 		{
 			string a, b, c;
 			cin >> a >> b >> c;
-			
+
 			cout << "reproduccion_sexual" << a << ' ' << b << ' '<< c << endl;
 
 			if ((POBL.existeix_individu(a) and POBL.existeix_individu(b) and not POBL.existeix_individu(c)) and POBL.compatibles(a,b))
 			{
-				individu fill(POBL.individu_nom(a),POBL.individu_nom(b));
+				individu fill(POBL.individu_nom(a),POBL.individu_nom(b),esp);
 				POBL.afegir_individu(c, fill);
 			}
 			else cout << "  error" << endl;
@@ -100,18 +102,18 @@ int main()
 			if (POBL.existeix_individu(nom)) POBL.escriure_arbre(nom);
 			else cout << "  error" << endl;
 		}
-
+		/*
 		else if(comando == "completar_arbol_genealogico")
 		{
 			string nom;
 			cin >> nom;
 
-			Arbre ap;
+			ArbreP ap;
 			ap.llegir();
 
 			if (POBL.existeix_individu(nom)) POBL.completar_ap(ap);
 		}
-
+		 */
 		else if(comando == "acabar")
 		{
 			return 0;

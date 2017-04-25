@@ -6,6 +6,7 @@
 #define CONJ_IND_HH
 
 #include "individu.hh"
+//#include "arbre_parcial.hh"
 
 #ifndef NO_DIAGRAM
 #include <map>
@@ -23,9 +24,16 @@ class poblacio
 
 private:
 
-	especie esp;
 	int nind;
-	map<string,individu> vind;
+	
+	struct persona
+	{
+		individu ind;
+		persona* mare;
+		persona* pare;
+	};
+
+	map<string,persona> vind;
 	static const int MAX_NIND = 200;
 
 public:
@@ -37,7 +45,7 @@ public:
 	 \pre <em>cierto</em>
 	 \post El resultado es una poblacion de una determinada especie pero sin individuos.
 	 \coste Constante */
-	poblacio(const especie &esp);
+	poblacio();
 
 	/** @brief Destructora por defecto.
 	 \pre <em>cierto</em>
@@ -53,11 +61,11 @@ public:
 	 \coste Constante */
 	void afegir_individu(const string nom, const individu& ind);
 
-	/** @brief Reproduce dos individuos y añade el individuo resultante a la poblacion.
-	 \pre <em>Los  dos primeros nombres si estan entre los individuos del p.i. (existen) y el tercero no esta (no existe). Deben ser de sexo opuesto, no ser hermanos ni por parte de padre ni de madre, y no ser ninguno de los dos antecesor del otro</em>
-	 \post El parámetro implícito pasa a contener el individuo fill fruto de la reproduccion de mare y pare
+	/** @brief Completa un arbol parcial
+	 \pre <em>cierto</em>
+	 \post se completa el arbol si es arbol parcial
 	 \coste Constante */
-	void reproduir(const string mare, const string pare, const string fill);
+	//bool completar_ap(ArbreP ap);
 	
 	//Consultores
 
@@ -97,7 +105,7 @@ public:
 	 \pre <em>Estan preparados en el canal estandar de entrada un entero que representa el numero de individuos que se van a leer y dichos individuos</em>
 	 \post Lee un conjunto de individuos por el canal estándar de entrada
 	 \coste */
-	void llegir();
+	void llegir(const especie &esp);
 
 	/** @brief Operación de escritura.
 	 \pre <em>cierto</em>

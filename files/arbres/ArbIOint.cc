@@ -1,5 +1,7 @@
 
 #include "ArbIOint.hh"
+using namespace std;
+
 
 void llegir_arbre_int(Arbre<int>& a, int marca){
 /* Pre: a es buit; el canal estandar d'entrada conte el recorregut en preordre

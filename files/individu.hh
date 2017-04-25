@@ -6,7 +6,7 @@
 #define INDIVIDU_HH
 
 #include "especie.hh"
-#include "Arbre.hh"
+//#include "Arbre.hh"
 
 
 #ifndef NO_DIAGRAM 
@@ -25,7 +25,6 @@ class individu
 
 private:
 
-	especie esp;
 	vector<pair<list<bool>, list<bool>> > COD_GEN ;
 
 	char sex1;
@@ -49,19 +48,12 @@ public:
 	 \coste Constante */
 	individu();
 
-	/** @brief Creadora a partir de una especie.
-	 Se ejecuta automáticamente al declarar una poblacion con especie.
-	 \pre <em>cierto</em>
-	 \post El resultado es una individuo con especie esp, sin nombre ni codigo genetico ni padres.
-	 \coste Constante */
-	individu(especie esp);
-
 	/** @brief Creadora a partir de dos individuos.
 	 Se ejecuta automáticamente al declarar una poblacion.
 	 \pre <em> individuo a es compatible con b para la reproduccion</em>
 	 \post El resultado es un individuo fruto de la reproduccion sexual de a y b.
 	 \coste Constante */
-	individu(const individu a, const individu b);
+	individu(const individu a, const individu b, especie esp);
 
 
 	/** @brief Destructora por defecto.
@@ -108,13 +100,13 @@ public:
 	 \pre <em>Estan preparados en el canal estandar de entrada el cromosomas sexual Y y su codigo genetico</em>
 	 \post Lee un conjunto de individuos por el canal estándar de entrada
 	 \coste */
-	void llegir();
+	void llegir(const especie &esp);
 
 	/** @brief Operación de escritura.
 	 \pre <em>cierto</em>
 	 \post Escribe el nombre, y su codigo genetico por el canal estándar de salida
 	 \coste */
-	void escriure() const;
+	void escriure(const especie &esp) const;
 
 };
 #endif
