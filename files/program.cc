@@ -13,7 +13,7 @@
 #include "especie.hh"
 #include "poblacio.hh"
 #include "individu.hh"
-//#include "arbre_parcial.hh"
+#include "arbre_parcial.hh"
 
 #ifndef NO_DIAGRAM
 #include "arbre.hh"
@@ -102,21 +102,21 @@ int main()
 			if (POBL.existeix_individu(nom)) POBL.escriure_arbre(nom);
 			else cout << "  error" << endl;
 		}
-		/*
+
 		else if(comando == "completar_arbol_genealogico")
 		{
-			string nom;
-			cin >> nom;
+			//string nom;
+			//cin >> nom;
 
 			ArbreP ap;
 			ap.llegir();
-
-			if (POBL.existeix_individu(nom)) POBL.completar_ap(ap);
+			ap.escriure();
+			//if (POBL.existeix_individu(nom)) POBL.completar_ap(ap);
 		}
-		 */
+	
 		else if(comando == "acabar")
 		{
-			return 0;
+			//return 0;
 		}
 
 	}

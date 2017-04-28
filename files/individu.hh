@@ -25,7 +25,7 @@ class individu
 
 private:
 
-	vector<pair<list<bool>, list<bool>> > COD_GEN ;
+	vector<pair<list<bool>, list<bool> > > COD_GEN ;
 
 	char sex1;
 	char sex2;

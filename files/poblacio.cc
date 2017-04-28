@@ -21,7 +21,7 @@ void poblacio::afegir_individu(const string nom, const individu& ind)
 bool poblacio::compatibles(const string a,const string b)
 {
 	bool res;
-	res = (vind[a].ind.consultar_SEXE() != vind[b].ind.consultar_SEXE()) and ();
+	//res = (vind[a].ind.consultar_SEXE() != vind[b].ind.consultar_SEXE()) and ();
 
 	return res;
 }
@@ -59,10 +59,10 @@ void poblacio::escriure() const
 		if (it->second.ind.consultar_SEXE()=="masculi") cout << " XY (";
 		else cout << " XX (";
 		if (not it->second.ind.te_pare()) cout << "$";
-		else cout << it->second.pare;
+		else cout << it->second.pare->first;
 		cout << ',';
 		if (not it->second.ind.te_mare()) cout << "$";
-		else cout << it->second.mare;
+		else cout << it->second.pare->first;
 		cout << ')';
 		cout << endl;
 	}

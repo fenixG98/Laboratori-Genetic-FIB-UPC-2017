@@ -5,10 +5,11 @@
 #ifndef arbre_parcial_h
 #define arbre_parcial_h
 
-#include "Arbre.hh"
 #ifndef NO_DIAGRAM
 #include <iostream>
 #include <string>
+#include <list>
+#include "Arbre.hh"
 #endif
 
 /** @class ArbreP
@@ -46,7 +47,6 @@ public:
 	 \pre <em>cierto</em>
 	 \post Es true siEscribe el arbol si este es parcial de otro
 	 \coste */
-	bool completar_arbre_parcial(const Arbre<string> &ap, const Arbre<string> &ag);
 
 	// Lectura y escritura
 
@@ -62,6 +62,22 @@ public:
 	 \coste */
 	void escriure();
 
+private:
+	static list<string> preordre( Arbre<string> &a);
+
+	static bool completar_arbre_parcial(const Arbre<string> &ap, const Arbre<string> &ag);
+
+	/** @brief Operación de lectura de un árbol de strings
+	 \pre  N > 0; a es vacío
+	 \post a contiene el árbol de strings leído de la entrada
+  */
+	static void leer_arbol_strings(Arbre<string> &a);
+
+	/** @brief Operación de escritura de un árbol de strings
+	 \pre  cierto
+	 \post Se ha escrito a por el canal de salida estándard
+  */
+	static void escribir_arbol_strings_id(Arbre<string> &a);
 };
 
 

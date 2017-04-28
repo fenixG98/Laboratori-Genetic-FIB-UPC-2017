@@ -25,15 +25,16 @@ class poblacio
 private:
 
 	int nind;
-	
+
 	struct persona
 	{
 		individu ind;
-		persona* mare;
-		persona* pare;
+		map<string,persona>::const_iterator mare;
+		map<string,persona>::const_iterator pare;
 	};
 
 	map<string,persona> vind;
+
 	static const int MAX_NIND = 200;
 
 public:
