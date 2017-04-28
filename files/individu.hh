@@ -36,6 +36,8 @@ private:
 
 	bool amb_mare;
 	individu* MARE;
+	
+	static void llegir_vector_pair(vector<pair<pair<bool,bool>,int> > &pt, const especie &esp);
 
 public:
 
