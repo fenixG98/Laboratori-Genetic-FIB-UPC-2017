@@ -20,10 +20,11 @@ void poblacio::afegir_individu(const string nom, const individu& ind)
 
 bool poblacio::compatibles(const string a,const string b)
 {
-	bool res;
-	//res = (vind[a].ind.consultar_SEXE() != vind[b].ind.consultar_SEXE()) and ();
+	if (vind[a].ind.consultar_SEXE() == vind[b].ind.consultar_SEXE()) return false;
+	if (vind.find(a)->second.mare->first==vind.find(b)->second.mare->first) return false;
+	if (vind.find(a)->second.pare->first==vind.find(b)->second.pare->first) return false;
 
-	return res;
+	return true;
 }
 
 bool poblacio::existeix_individu(const string nom) const

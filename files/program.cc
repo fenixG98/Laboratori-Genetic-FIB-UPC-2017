@@ -80,6 +80,16 @@ int main()
 
 		else if(comando == "reproduccion_sexual")
 		{
+			/*
+			 reproduccion_sexual
+			 a1 b3 c1
+			 0 1 2
+			 1 1 3
+			 1 0 5
+			 1 1 4
+			 0 0 3
+			 1 1 4
+			 */
 			string a, b, c;
 			cin >> a >> b >> c;
 
@@ -89,6 +99,7 @@ int main()
 			{
 				individu fill(POBL.individu_nom(a),POBL.individu_nom(b),esp);
 				POBL.afegir_individu(c, fill);
+				//POBL.afegir_pares(a, b, c);
 			}
 			else cout << "  error" << endl;
 		}
@@ -116,7 +127,7 @@ int main()
 	
 		else if(comando == "acabar")
 		{
-			//return 0;
+			return 0;
 		}
 
 	}
