@@ -16,7 +16,7 @@
 #include "arbre_parcial.hh"
 
 #ifndef NO_DIAGRAM
-#include "arbre.hh"
+#include "Arbre.hh"
 #include <iostream>
 #include <string>
 //#include "Arbre.hh"
