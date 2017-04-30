@@ -8,21 +8,9 @@ individu::individu()
 	
 }
 
- void individu::llegir_vector_pair(vector<pair<pair<bool,bool>,int> > &pt, const especie &esp)
-{
-	for (int i = 0; i < esp.consultar_numero_parells(); ++i)
-	{
-		cin >> pt[i].first.first;
-		cin >> pt[i].first.second;
-		cin >> pt[i].second;
-	}
-}
-
-individu::individu(const individu a, const individu b, especie esp)
+individu::individu(const vector<pair<pair<bool, bool>, int> > &pt,const individu a, const individu b, especie esp)
 {
 	amb_mare = amb_pare = true;
-	vector<pair<pair<bool, bool>, int> > pt;
-	llegir_vector_pair(pt,esp);
 }
 
 individu::~individu(){}
@@ -91,9 +79,6 @@ void individu::llegir(const especie &esp)
 
 void individu::escriure(const especie &esp) const
 {
-	int d = esp.consultar_longitud_y();
-	if (sex2=='X') d = esp.consultar_longitud_x();
-
 	cout << "  " << sex1 << ": ";
 	for(std::list<bool>::const_iterator it = COD_GEN[0].first.begin(); it != COD_GEN[0].first.end(); ++it) cout << *it << ' ';
 	cout << endl;

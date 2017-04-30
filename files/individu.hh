@@ -32,12 +32,7 @@ private:
 	string SEXE;
 
 	bool amb_pare;
-	individu* PARE;
-
 	bool amb_mare;
-	individu* MARE;
-	
-	static void llegir_vector_pair(vector<pair<pair<bool,bool>,int> > &pt, const especie &esp);
 
 public:
 
@@ -55,7 +50,7 @@ public:
 	 \pre <em> individuo a es compatible con b para la reproduccion</em>
 	 \post El resultado es un individuo fruto de la reproduccion sexual de a y b.
 	 \coste Constante */
-	individu(const individu a, const individu b, especie esp);
+	individu(const vector<pair<pair<bool, bool>, int> > &pt, const individu a, const individu b, especie esp);
 
 
 	/** @brief Destructora por defecto.
@@ -78,23 +73,13 @@ public:
 	 \coste Constante  */
 	bool te_pare() const;
 
-	/** @brief Consulta el padre del individuo.
-	 \pre <em>El p.i. tiene padre</em>
-	 \post El resultado el individuo padre del p.i.
-	 \coste Constante  */
-	individu consultar_PARE() const;
+	
 
 	/** @brief Consulta sie tiene madre el individuo.
 	 \pre <em>cierto</em>
 	 \post El resultado es true si tiene madre
 	 \coste Constante  */
 	bool te_mare() const;
-
-	/** @brief Consulta la madre del individuo.
-	 \pre <em>El p.i. tiene madre</em>
-	 \post El resultado el individuo madre del p.i.
-	 \coste Constante  */
-	individu consultar_MARE() const;
 
 	// Lectura i escriptura
 

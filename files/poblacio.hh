@@ -37,6 +37,14 @@ private:
 
 	static const int MAX_NIND = 200;
 
+
+
+
+
+
+	map<string,persona>::iterator individu_nom_it(const string nom) const;
+
+
 public:
 
 	//Constructores
@@ -67,6 +75,9 @@ public:
 	 \post se completa el arbol si es arbol parcial
 	 \coste Constante */
 	//bool completar_ap(ArbreP ap);
+
+
+	void afegir_pares(string a, string b, string c);
 	
 	//Consultores
 
