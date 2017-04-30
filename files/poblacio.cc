@@ -1,5 +1,4 @@
 #include "poblacio.hh"
-#include <algorithm>
 
 const char *ER1 = "  error";
 const char *ER2 = "  no es posible reproduccion";

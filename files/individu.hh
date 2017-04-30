@@ -37,8 +37,6 @@ private:
 	bool amb_mare;
 	individu* MARE;
 	
-	static void llegir_vector_pair(vector<pair<pair<bool,bool>,int> > &pt, const especie &esp);
-
 public:
 
 	//Constructores
@@ -55,7 +53,7 @@ public:
 	 \pre <em> individuo a es compatible con b para la reproduccion</em>
 	 \post El resultado es un individuo fruto de la reproduccion sexual de a y b.
 	 \coste Constante */
-	individu(const individu a, const individu b, especie esp);
+	individu(const vector<pair<pair<bool, bool>, int> > &pt, const individu a, const individu b, especie esp);
 
 
 	/** @brief Destructora por defecto.
