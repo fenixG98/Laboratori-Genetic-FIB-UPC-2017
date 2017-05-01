@@ -11,6 +11,9 @@ individu::individu()
 individu::individu(const vector<pair<pair<bool, bool>, int> > &pt,const individu a, const individu b, especie esp)
 {
 	amb_mare = amb_pare = true;
+	sex1 = 'X';
+	COD_GEN = vector<pair<list<bool>, list<bool> > > (a.COD_GEN.size());
+	this->COD_GEN = a.COD_GEN; ///////////////////// COREGIR
 }
 
 individu::~individu(){}

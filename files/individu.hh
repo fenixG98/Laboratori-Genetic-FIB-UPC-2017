@@ -33,12 +33,7 @@ private:
 
 	bool amb_pare;
 	bool amb_mare;
-<<<<<<< HEAD
-	individu* MARE;
-	
-=======
 
->>>>>>> master
 public:
 
 	//Constructores
