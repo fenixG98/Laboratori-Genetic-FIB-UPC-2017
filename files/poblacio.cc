@@ -19,10 +19,14 @@ void poblacio::afegir_individu(const string nom, const individu& ind)
 
 bool poblacio::compatibles(const string a,const string b)
 {
-	if (vind[a].ind.consultar_SEXE() == vind[b].ind.consultar_SEXE()) return false;
-	if (vind.find(a)->second.mare->first==vind.find(b)->second.mare->first) return false;
-	if (vind.find(a)->second.pare->first==vind.find(b)->second.pare->first) return false;
-
+	
+	if (vind.find(a)->second.ind.consultar_SEXE() == vind.find(b)->second.ind.consultar_SEXE()) return false;	
+	if(not vind.find(a)->second.ind.te_mare() or not vind.find(a)->second.ind.te_pare() or not vind.find(b)->second.ind.te_mare() or not vind.find(a)->second.ind.te_pare()) return true;
+	else
+	{
+		if (vind.find(a)->second.mare->first==vind.find(b)->second.mare->first) return false;
+		if (vind.find(a)->second.pare->first==vind.find(b)->second.pare->first) return false;
+	}
 	return true;
 }
 
@@ -65,13 +69,13 @@ void poblacio::escriure() const
 	for(map<string,persona>::const_iterator it = vind.begin(); it != vind.end(); ++it)
 	{
 		cout << "  " << it->first;
-		if (it->second.ind.consultar_SEXE()=="masculi") cout << " XY (";
+		if (it->second.ind.consultar_SEXE()) cout << " XY (";
 		else cout << " XX (";
 		if (not it->second.ind.te_pare()) cout << "$";
 		else cout << it->second.pare->first;
 		cout << ',';
 		if (not it->second.ind.te_mare()) cout << "$";
-		else cout << it->second.pare->first;
+		else cout << it->second.mare->first;
 		cout << ')';
 		cout << endl;
 	}

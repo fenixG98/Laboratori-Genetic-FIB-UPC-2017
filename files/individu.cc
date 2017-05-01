@@ -12,13 +12,80 @@ individu::individu(const vector<pair<pair<bool, bool>, int> > &pt,const individu
 {
 	amb_mare = amb_pare = true;
 	sex1 = 'X';
-	COD_GEN = vector<pair<list<bool>, list<bool> > > (a.COD_GEN.size());
-	this->COD_GEN = a.COD_GEN; ///////////////////// COREGIR
+	if (pt[0].first.second)
+	{
+		SEXE = 1;
+		sex2 = 'Y';
+	}
+	else
+	{
+		SEXE = 0;
+		sex2 = 'X';
+	}
+
+	COD_GEN = vector<pair<list<bool>, list<bool> > > (esp.consultar_numero_parells()+1);
+	int n;
+	for (int i = 1; i < esp.consultar_numero_parells()+1; ++i)
+	{
+		n = pt[i].second;
+
+		list<bool> aux1;
+		list<bool> aux3;
+		if (not pt[i].first.first)
+		{
+			aux1 = a.COD_GEN[i].first;
+			aux3 = a.COD_GEN[i].second;
+		} 
+		else
+		{
+			 aux1 = a.COD_GEN[i].second;
+			 aux3 = a.COD_GEN[i].first;
+		}
+
+		list<bool> aux2;
+		list<bool> aux4;
+		if (not pt[i].first.second)
+		{
+			aux2 = b.COD_GEN[i].first;
+			aux4 = b.COD_GEN[i].second;
+		} 
+		else
+		{
+			 aux2 = b.COD_GEN[i].second;
+			 aux4 = b.COD_GEN[i].first;
+		}
+
+		COD_GEN[i].first = creurar_llistes(n, aux1, aux2);
+		COD_GEN[i].second = creurar_llistes(n, aux3, aux4);
+	}
+
 }
 
 individu::~individu(){}
 
-string individu::consultar_SEXE() const
+list<bool> individu::creurar_llistes(int n, const list<bool> &l1, const list<bool> &l2)
+{
+    list<bool> aux;
+
+    list<bool>::const_iterator it_end = l1.begin();
+    advance(it_end,n);
+
+    for( list<bool>::const_iterator it=l1.begin(); it != it_end; ++it) 
+    {
+        aux.push_back(*it);
+    }
+
+    it_end = l2.begin();
+    advance(it_end,n);
+    for( list<bool>::const_iterator it=it_end; it != l2.end(); ++it) 
+    {
+        aux.push_back(*it);
+    }
+    return aux;
+}
+
+
+bool individu::consultar_SEXE() const
 {
 	return SEXE;
 }
@@ -44,11 +111,11 @@ void individu::llegir(const especie &esp)
 
 	cin >> sex2;
 
-	if (sex2=='X') SEXE = "femeni";
+	if (sex2=='X') SEXE = 0;
 
 	else if (sex2=='Y')
 	{
-		SEXE = "masculi";
+		SEXE = 1;
 		d = esp.consultar_longitud_y();
 	}
 

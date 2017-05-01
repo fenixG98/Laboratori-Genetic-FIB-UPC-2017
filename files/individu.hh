@@ -29,10 +29,13 @@ private:
 
 	char sex1;
 	char sex2;
-	string SEXE;
+	bool SEXE;
 
 	bool amb_pare;
 	bool amb_mare;
+
+	list<bool> creurar_llistes(int n, const list<bool> &l1, const list<bool> &l2);
+
 
 public:
 
@@ -65,7 +68,7 @@ public:
 	 \pre <em>El p.i. tiene sexo</em>
 	 \post El resultado es el sexo del individuo
 	 \coste Constante  */
-	string consultar_SEXE() const;
+	bool consultar_SEXE() const;
 
 	/** @brief Consulta si tiene madre el individuo.
 	 \pre <em>cierto</em>
