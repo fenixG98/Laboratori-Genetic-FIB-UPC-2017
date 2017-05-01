@@ -47,9 +47,6 @@ individu poblacio::individu_nom(const string nom) const
 	return vind.find(nom)->second.ind;
 }
 
-//map<string,persona>::iterator poblacio::individu_nom_it(const string nom) const;
-
-
 void poblacio::llegir(const especie &esp)
 {
 

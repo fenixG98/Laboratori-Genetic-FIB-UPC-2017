@@ -57,7 +57,7 @@ int main()
 			cin >> nom;
 			ind.llegir(esp);
 
-			cout << "añadir_individuo " << nom << endl;
+			cout << "anadir_individuo " << nom << endl;
 
 			if (not POBL.existeix_individu(nom)) POBL.afegir_individu(nom, ind);
 			else cout << "  error" << endl;
@@ -86,16 +86,6 @@ int main()
 
 		else if(comando == "reproduccion_sexual")
 		{
-			/*
-			 reproduccion_sexual
-			 a1 b3 c1
-			 0 1 2
-			 1 1 3
-			 1 0 5
-			 1 1 4
-			 0 0 3
-			 1 1 4
-			 */
 			string a, b, c;
 			cin >> a >> b >> c;
 
@@ -105,21 +95,25 @@ int main()
 			cout << "reproduccion_sexual " << a << ' ' << b << ' '<< c << endl;
 
 
-			if ((POBL.existeix_individu(a) and POBL.existeix_individu(b) and not POBL.existeix_individu(c)) and POBL.compatibles(a,b))
+			if ((POBL.existeix_individu(a) and POBL.existeix_individu(b) and not POBL.existeix_individu(c)))
 			{
-				individu fill(pt,POBL.individu_nom(a),POBL.individu_nom(b),esp);
-				POBL.afegir_individu(c, fill);
-				POBL.afegir_pares(a, b, c);
+				if (POBL.compatibles(a,b))
+				{
+					individu fill(pt,POBL.individu_nom(a),POBL.individu_nom(b),esp);
+					POBL.afegir_individu(c, fill);
+					POBL.afegir_pares(a, b, c);
+				}
+				else cout << "  no es posible reproduccion" << endl;
 
 			}
 			else cout << "  error" << endl;
-		}
+					}
 
 		else if(comando == "escribir_arbol_genealogico")
 		{
 			string nom;
 			cin >> nom;
-			cout << "escribir_arbol_genealogico" << nom << endl;
+			cout << "escribir_arbol_genealogico " << nom << endl;
 			/*
 			if (POBL.existeix_individu(nom)) POBL.escriure_arbre(nom);
 			else cout << "  error" << endl;
@@ -128,9 +122,9 @@ int main()
 
 		else if(comando == "completar_arbol_genealogico")
 		{
-			//string nom;
-			//cin >> nom;
-			
+			string nom;
+			cin >> nom;	
+			cout << "completar_arbol_genealogico " << nom << endl;
 			ArbreP ap;
 			ap.llegir();
 			ap.escriure();
@@ -145,22 +139,3 @@ int main()
 
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
