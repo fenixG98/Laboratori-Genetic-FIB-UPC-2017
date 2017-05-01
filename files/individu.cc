@@ -23,11 +23,9 @@ individu::individu(const vector<pair<pair<bool, bool>, int> > &pt,const individu
 		sex2 = 'X';
 	}
 
-<<<<<<< HEAD
 	COD_GEN = vector<pair<list<bool>, list<bool> > > (a.COD_GEN.size());
 	
 	this->COD_GEN = a.COD_GEN; ///////////////////// COREGIR
-=======
 	COD_GEN = vector<pair<list<bool>, list<bool> > > (esp.consultar_numero_parells()+1);
 	int n;
 	for (int i = 1; i < esp.consultar_numero_parells()+1; ++i)
@@ -46,13 +44,10 @@ individu::individu(const vector<pair<pair<bool, bool>, int> > &pt,const individu
 		COD_GEN[i].second = creurar_llistes(n, aux2, aux1);
 	}
 
->>>>>>> master
 }
 
 individu::~individu(){}
 
-<<<<<<< HEAD
-=======
 list<bool> individu::creurar_llistes(int n, const list<bool> &l1, const list<bool> &l2)
 {
     list<bool> aux;
@@ -75,7 +70,6 @@ list<bool> individu::creurar_llistes(int n, const list<bool> &l1, const list<boo
 }
 
 
->>>>>>> master
 bool individu::consultar_SEXE() const
 {
 	return SEXE;

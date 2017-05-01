@@ -39,8 +39,6 @@ void llegir_vector_pair(vector<pair<pair<bool,bool>,int> > &pt)
 
 int main()
 {
-	cout << " PROGRAM RUNNING " << endl;
-
 	especie esp;
 	esp.llegir();
 	// especie creada
