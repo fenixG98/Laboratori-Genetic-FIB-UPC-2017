@@ -29,7 +29,7 @@ using namespace std;
 
 void llegir_vector_pair(vector<pair<pair<bool,bool>,int> > &pt, const especie &esp)
 {
-	for (int i = 0; i < esp.consultar_numero_parells()+1; ++i)
+	for (int i = 0; i < esp.consultar_numero_parells(); ++i)
 	{
 		cin >> pt[i].first.first;
 		cin >> pt[i].first.second;
@@ -101,15 +101,19 @@ int main()
 			string a, b, c;
 			cin >> a >> b >> c;
 
-			cout << "reproduccion_sexual" << a << ' ' << b << ' '<< c << endl;
-			vector<pair<pair<bool,bool>,int> > pt;
+			vector<pair<pair<bool,bool>,int> > pt(esp.consultar_numero_parells()+1);
+
 			llegir_vector_pair(pt,esp);
-			
+
+			cout << "reproduccion_sexual" << a << ' ' << b << ' '<< c << endl;
+
+
 			if ((POBL.existeix_individu(a) and POBL.existeix_individu(b) and not POBL.existeix_individu(c)) and POBL.compatibles(a,b))
 			{
 				individu fill(pt,POBL.individu_nom(a),POBL.individu_nom(b),esp);
 				POBL.afegir_individu(c, fill);
 				POBL.afegir_pares(a, b, c);
+
 			}
 			else cout << "  error" << endl;
 		}
