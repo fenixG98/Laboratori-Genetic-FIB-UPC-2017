@@ -29,7 +29,7 @@ using namespace std;
 
 void llegir_vector_pair(vector<pair<pair<bool,bool>,int> > &pt, const especie &esp)
 {
-	for (int i = 0; i < esp.consultar_numero_parells()+1; ++i)
+	for (int i = 0; i < esp.consultar_numero_parells(); ++i)
 	{
 		cin >> pt[i].first.first;
 		cin >> pt[i].first.second;
