@@ -81,12 +81,12 @@ void poblacio::escriure() const
 	}
 }
 
-
+/*
 void poblacio::escriure_arbre(const string nom) const
 {
 
 }
-
+*/
 
 
 

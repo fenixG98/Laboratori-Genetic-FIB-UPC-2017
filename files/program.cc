@@ -80,7 +80,7 @@ int main()
 			if (POBL.existeix_individu(nom))
 			{
 				individu ind = POBL.individu_nom(nom);
-				ind.escriure(esp);
+				ind.escriure();
 			}
 			else cout << "  error" << endl;
 
@@ -122,20 +122,22 @@ int main()
 			string nom;
 			cin >> nom;
 			cout << "escribir_arbol_genealogico" << nom << endl;
-
+			/*
 			if (POBL.existeix_individu(nom)) POBL.escriure_arbre(nom);
 			else cout << "  error" << endl;
+			*/
 		}
 
 		else if(comando == "completar_arbol_genealogico")
 		{
 			//string nom;
 			//cin >> nom;
-
+			
 			ArbreP ap;
 			ap.llegir();
 			ap.escriure();
 			//if (POBL.existeix_individu(nom)) POBL.completar_ap(ap);
+			
 		}
 	
 		else if(comando == "acabar")

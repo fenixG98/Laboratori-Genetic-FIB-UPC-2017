@@ -96,7 +96,7 @@ public:
 	 \pre <em>cierto</em>
 	 \post Escribe el nombre, y su codigo genetico por el canal estándar de salida
 	 \coste */
-	void escriure(const especie &esp) const;
+	void escriure() const;
 
 };
 #endif
