@@ -26,6 +26,15 @@ bool poblacio::compatibles(const string a,const string b)
 	return true;
 }
 
+void poblacio::afegir_pares(string a, string b, string c)
+{
+	vind.find(c)->second.pare = vind.find(a);
+	vind.find(c)->second.mare = vind.find(b);
+
+	individu_nom(b);
+
+}
+
 bool poblacio::existeix_individu(const string nom) const
 {
 	if (vind.count(nom)==0) return false;
@@ -37,6 +46,9 @@ individu poblacio::individu_nom(const string nom) const
 	return vind.find(nom)->second.ind;
 }
 
+//map<string,persona>::iterator poblacio::individu_nom_it(const string nom) const;
+
+
 void poblacio::llegir(const especie &esp)
 {
 
@@ -47,7 +59,7 @@ void poblacio::llegir(const especie &esp)
 		individu ind;
 		cin >> nom;
 		ind.llegir(esp);
-		vind[nom].ind=ind;
+		vind.find(nom)->second.ind=ind;
 	}
 }
 

@@ -32,11 +32,13 @@ private:
 	string SEXE;
 
 	bool amb_pare;
-	individu* PARE;
-
 	bool amb_mare;
+<<<<<<< HEAD
 	individu* MARE;
 	
+=======
+
+>>>>>>> master
 public:
 
 	//Constructores
@@ -76,23 +78,13 @@ public:
 	 \coste Constante  */
 	bool te_pare() const;
 
-	/** @brief Consulta el padre del individuo.
-	 \pre <em>El p.i. tiene padre</em>
-	 \post El resultado el individuo padre del p.i.
-	 \coste Constante  */
-	individu consultar_PARE() const;
+	
 
 	/** @brief Consulta sie tiene madre el individuo.
 	 \pre <em>cierto</em>
 	 \post El resultado es true si tiene madre
 	 \coste Constante  */
 	bool te_mare() const;
-
-	/** @brief Consulta la madre del individuo.
-	 \pre <em>El p.i. tiene madre</em>
-	 \post El resultado el individuo madre del p.i.
-	 \coste Constante  */
-	individu consultar_MARE() const;
 
 	// Lectura i escriptura
 
