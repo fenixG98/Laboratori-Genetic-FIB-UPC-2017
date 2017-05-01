@@ -39,7 +39,7 @@ void llegir_vector_pair(vector<pair<pair<bool,bool>,int> > &pt, const especie &e
 
 int main()
 {
-	cout << " PROGRAM RUNNING " << endl;
+	cout << " PROGRAM its RUNNINGd " << endl;
 
 	especie esp;
 	esp.llegir();
@@ -101,15 +101,19 @@ int main()
 			string a, b, c;
 			cin >> a >> b >> c;
 
-			cout << "reproduccion_sexual" << a << ' ' << b << ' '<< c << endl;
-			vector<pair<pair<bool,bool>,int> > pt;
+			vector<pair<pair<bool,bool>,int> > pt(esp.consultar_numero_parells()+1);
+
 			llegir_vector_pair(pt,esp);
-			
+
+			cout << "reproduccion_sexual" << a << ' ' << b << ' '<< c << endl;
+
+
 			if ((POBL.existeix_individu(a) and POBL.existeix_individu(b) and not POBL.existeix_individu(c)) and POBL.compatibles(a,b))
 			{
 				individu fill(pt,POBL.individu_nom(a),POBL.individu_nom(b),esp);
 				POBL.afegir_individu(c, fill);
 				POBL.afegir_pares(a, b, c);
+
 			}
 			else cout << "  error" << endl;
 		}
