@@ -34,6 +34,9 @@ private:
 	bool amb_pare;
 	bool amb_mare;
 
+	list<bool> creurar_llistes(int n, const list<bool> &l1, const list<bool> &l2);
+
+
 public:
 
 	//Constructores
@@ -93,7 +96,7 @@ public:
 	 \pre <em>cierto</em>
 	 \post Escribe el nombre, y su codigo genetico por el canal estándar de salida
 	 \coste */
-	void escriure(const especie &esp) const;
+	void escriure() const;
 
 };
 #endif

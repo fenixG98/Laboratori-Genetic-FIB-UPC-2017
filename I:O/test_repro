@@ -55,4 +55,13 @@ a1 b3 c1
 1 0 5
 1 1 4
 0 0 3
+<<<<<<< HEAD
 1 1 4
+=======
+1 1 4
+
+escribir_poblacion
+
+escribir_genotipo c1
+
+>>>>>>> master
