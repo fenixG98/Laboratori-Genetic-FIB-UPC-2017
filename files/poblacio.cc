@@ -56,7 +56,7 @@ void poblacio::llegir(const especie &esp)
 		individu ind;
 		cin >> nom;
 		ind.llegir(esp);
-		vind.find(nom)->second.ind=ind;
+		vind[nom].ind=ind;
 	}
 }
 
