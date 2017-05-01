@@ -64,6 +64,8 @@ Y
 1 1 1 1 1 0  
 0 0 0 1 1 1
 
+escribir_poblacion
+
 anadir_individuo
 a2
 Y
@@ -87,6 +89,7 @@ b4
 
 escribir_genotipo
 c1
+
 completar_arbol_genealogico
 a1 a2 a3 $ $ a4 $ $ a5 $ a6 $ $ 
 
@@ -98,3 +101,9 @@ a1 b3 c1
 1 1 4
 0 0 3
 1 1 4
+
+escribir_poblacion
+
+escribir_genotipo c1
+
+
