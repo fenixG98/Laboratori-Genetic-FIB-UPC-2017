@@ -12,13 +12,25 @@ individu::individu(const vector<pair<pair<bool, bool>, int> > &pt,const individu
 {
 	amb_mare = amb_pare = true;
 	sex1 = 'X';
+	if (pt[0].first.second)
+	{
+		SEXE = 1;
+		sex2 = 'Y';
+	}
+	else
+	{
+		SEXE = 0;
+		sex2 = 'X';
+	}
+
 	COD_GEN = vector<pair<list<bool>, list<bool> > > (a.COD_GEN.size());
+	
 	this->COD_GEN = a.COD_GEN; ///////////////////// COREGIR
 }
 
 individu::~individu(){}
 
-string individu::consultar_SEXE() const
+bool individu::consultar_SEXE() const
 {
 	return SEXE;
 }
@@ -44,11 +56,11 @@ void individu::llegir(const especie &esp)
 
 	cin >> sex2;
 
-	if (sex2=='X') SEXE = "femeni";
+	if (sex2=='X') SEXE = 0;
 
 	else if (sex2=='Y')
 	{
-		SEXE = "masculi";
+		SEXE = 1;
 		d = esp.consultar_longitud_y();
 	}
 
