@@ -28,11 +28,8 @@ bool poblacio::compatibles(const string a,const string b)
 
 void poblacio::afegir_pares(string a, string b, string c)
 {
-	vind.find(c)->second.pare = vind.find(a);
-	vind.find(c)->second.mare = vind.find(b);
-
-	individu_nom(b);
-
+	vind.find(c)->second.mare = vind.find(a);
+	vind.find(c)->second.pare = vind.find(b);
 }
 
 bool poblacio::existeix_individu(const string nom) const
@@ -59,7 +56,7 @@ void poblacio::llegir(const especie &esp)
 		individu ind;
 		cin >> nom;
 		ind.llegir(esp);
-		vind.find(nom)->second.ind=ind;
+		vind[nom].ind=ind;
 	}
 }
 

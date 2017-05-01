@@ -37,11 +37,6 @@ private:
 
 	static const int MAX_NIND = 200;
 
-
-
-
-
-
 	map<string,persona>::iterator individu_nom_it(const string nom) const;
 
 
@@ -133,6 +128,12 @@ public:
 };
 
 #endif
+
+
+
+
+
+
 
 
 
