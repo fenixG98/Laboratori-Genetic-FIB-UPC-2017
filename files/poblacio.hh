@@ -72,6 +72,8 @@ public:
 	
 	//Consultores
 
+	list<string> arbre_genealogic(string nom);
+
 	/** @brief Consulta el numero de individuos de la poblacion.
 	 \pre <em>cierto</em>
 	 \post El resultado es el numero de de individuos de la poblacion

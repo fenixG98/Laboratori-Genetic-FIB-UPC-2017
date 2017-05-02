@@ -45,8 +45,9 @@ public:
 	// Operadoras
 	/** @brief Completa un arbol parcial.
 	 \pre <em>cierto</em>
-	 \post Es true siEscribe el arbol si este es parcial de otro
+	 \post Es true si es parcial y escribe el arbol si este es parcial de otro
 	 \coste */
+	bool completar_ap(const ArbreP &ag);
 
 	// Lectura y escritura
 
