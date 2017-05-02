@@ -82,6 +82,7 @@ int main()
 
 		}
 
+
 		else if(comando == "reproduccion_sexual")
 		{
 			string a, b, c;
@@ -97,7 +98,7 @@ int main()
 			{
 				if (POBL.compatibles(a,b))
 				{
-					individu fill(pt,POBL.individu_nom(a),POBL.individu_nom(b),esp);
+					individu fill(pt,POBL.individu_nom(a),POBL.individu_nom(b));
 					POBL.afegir_individu(c, fill);
 					POBL.afegir_pares(a, b, c);
 				}
@@ -117,7 +118,8 @@ int main()
 			else cout << "  error" << endl;
 		
 		}
-		
+		/*
+
 		else if(comando == "completar_arbol_genealogico")
 		{
 			string nom;
@@ -126,11 +128,17 @@ int main()
 			ArbreP ap;
 			ap.llegir();
 
-			//if (POBL.completar_ap(ap)) 
-			//else cout << "  no es arbol parcial" << endl;
+			if (POBL.existeix_individu(nom))
+			{
+				list<string>l = POBL.arbre_genealogic(nom);
+				ArbreP apr;
+				if (apr.completar_ap(ap)) apr.escriure();
+				else cout << "  no es arbol parcial" << endl;
+			}
+
 			ap.escriure();
 		}
-	
+*/
 		else if(comando == "acabar")
 		{
 			return 0;

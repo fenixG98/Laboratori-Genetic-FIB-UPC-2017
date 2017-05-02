@@ -38,6 +38,14 @@ void poblacio::afegir_pares(string a, string b, string c)
 	vind.find(c)->second.pare = vind.find(b);
 }
 
+
+list<string> poblacio::arbre_genealogic(string nom)
+{
+	list<string> l;
+	generar_arbre_genealogic(l, vind.find(nom));
+	return l;
+}
+
 bool poblacio::existeix_individu(const string nom) const
 {
 	if (vind.count(nom)==0) return false;
@@ -98,6 +106,7 @@ void poblacio::escriure_arbre_genealogic(const string nom)
 {
 	list<string> l;
 	generar_arbre_genealogic(l, vind.find(nom));
+	cout << "  ";
 	for(list<string>::const_iterator it=l.begin(); it != l.end(); ++it)cout << *it << ' ';
 	cout << endl;
 }
