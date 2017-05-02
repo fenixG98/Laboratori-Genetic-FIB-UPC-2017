@@ -31,8 +31,8 @@ void ArbreP::leer_arbol_strings(Arbre<string> &a)
 
 void ArbreP::escriure()
 {
-		Arbre<string> copia(ap);
-		list<string> l = preordre(copia);
+	Arbre<string> copia(ap);
+	list<string> l = preordre(copia);
 	for (list<string>::iterator it = l.begin(); it != l.end(); ++it) cout << *it << ' ';
 }
 
