@@ -14,6 +14,8 @@ void poblacio::afegir_individu(const string nom, const individu& ind)
 {
 	++nind;
 	vind[nom].ind=ind;
+	vind[nom].mare=vind.end();
+	vind[nom].pare=vind.end();
 }
 
 
@@ -57,7 +59,9 @@ void poblacio::llegir(const especie &esp)
 		individu ind;
 		cin >> nom;
 		ind.llegir(esp);
-		vind[nom].ind=ind;
+		vind[nom].ind =ind;
+		vind[nom].mare=vind.end();
+		vind[nom].pare=vind.end();
 	}
 }
 
@@ -78,12 +82,25 @@ void poblacio::escriure() const
 	}
 }
 
-/*
-void poblacio::escriure_arbre(const string nom) const
-{
 
+void poblacio::generar_arbre_genealogic(list<string> &l1, map<string,persona>::const_iterator it)
+{	
+	if(it!=vind.end())
+	{
+		l1.push_back(it->first);
+		generar_arbre_genealogic(l1, it->second.pare);
+		generar_arbre_genealogic(l1, it->second.mare);
+	}
+	else l1.push_back("$");
 }
-*/
+
+void poblacio::escriure_arbre_genealogic(const string nom) 
+{
+	list<string> l;
+	generar_arbre_genealogic(l, vind.find(nom));
+	for(list<string>::const_iterator it=l.begin(); it != l.end(); ++it)cout << *it << ' ';
+	cout << endl;
+}
 
 
 

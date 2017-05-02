@@ -37,7 +37,7 @@ private:
 
 	static const int MAX_NIND = 200;
 
-	map<string,persona>::iterator individu_nom_it(const string nom) const;
+	void generar_arbre_genealogic(list<string> &l1, map<string,persona>::const_iterator it);
 
 
 public:
@@ -65,14 +65,10 @@ public:
 	 \coste Constante */
 	void afegir_individu(const string nom, const individu& ind);
 
-	/** @brief Completa un arbol parcial
-	 \pre <em>cierto</em>
-	 \post se completa el arbol si es arbol parcial
-	 \coste Constante */
-	//bool completar_ap(ArbreP ap);
-
 
 	void afegir_pares(string a, string b, string c);
+
+
 	
 	//Consultores
 
@@ -123,7 +119,7 @@ public:
 	 \pre <em>cierto</em>
 	 \post Escribe el grafo-arbol(binario) de sus ascendientes en preorden.
 	 \coste */
-	void escriure_arbre(const string nom) const;
+	void escriure_arbre_genealogic(const string nom);
 
 };
 

@@ -41,10 +41,8 @@ int main()
 {
 	especie esp;
 	esp.llegir();
-	// especie creada
 	poblacio POBL;
 	POBL.llegir(esp);
-	//poblacio llegida
 
 	string comando;
 
@@ -107,19 +105,19 @@ int main()
 
 			}
 			else cout << "  error" << endl;
-					}
+		}
 
 		else if(comando == "escribir_arbol_genealogico")
 		{
 			string nom;
 			cin >> nom;
 			cout << "escribir_arbol_genealogico " << nom << endl;
-			/*
-			if (POBL.existeix_individu(nom)) POBL.escriure_arbre(nom);
+		
+			if (POBL.existeix_individu(nom)) POBL.escriure_arbre_genealogic(nom);
 			else cout << "  error" << endl;
-			*/
+		
 		}
-
+		
 		else if(comando == "completar_arbol_genealogico")
 		{
 			string nom;
@@ -127,9 +125,10 @@ int main()
 			cout << "completar_arbol_genealogico " << nom << endl;
 			ArbreP ap;
 			ap.llegir();
+
+			//if (POBL.completar_ap(ap)) 
+			//else cout << "  no es arbol parcial" << endl;
 			ap.escriure();
-			//if (POBL.existeix_individu(nom)) POBL.completar_ap(ap);
-			
 		}
 	
 		else if(comando == "acabar")
