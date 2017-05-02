@@ -1,4 +1,4 @@
-#ifndef ARBRE_HH
+ #ifndef ARBRE_HH
 #define ARBRE_HH
 
 #include <iostream>
