@@ -9,7 +9,7 @@
 //#include "Arbre.hh"
 
 
-#ifndef NO_DIAGRAM 
+#ifndef NO_DIAGRAM
 #include <iostream>
 #include <list>
 #endif
@@ -76,7 +76,7 @@ public:
 	 \coste Constante  */
 	bool te_pare() const;
 
-	
+
 
 	/** @brief Consulta sie tiene madre el individuo.
 	 \pre <em>cierto</em>

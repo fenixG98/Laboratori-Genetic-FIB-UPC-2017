@@ -5,7 +5,7 @@ individu::individu()
 {
 	amb_mare = amb_pare = false;
 	sex1 = 'X';
-	
+
 }
 
 individu::individu(const vector<pair<pair<bool, bool>, int> > &pt,const individu a, const individu b)
@@ -24,23 +24,61 @@ individu::individu(const vector<pair<pair<bool, bool>, int> > &pt,const individu
 	}
 
 	COD_GEN = vector<pair<list<bool>, list<bool> > > (a.COD_GEN.size());
+
 	/*
-	COD_GEN[0].first =
-	COD_GEN[0].second = 
+	 escribir_genotipo c1
+	X: 0 1 0 1 0
+	Y: 1 0 1
+
+	 0 1 2
+
+	 a1
+	 X
+	 0 1  1 1 0
+
+	 b3
+	 Y
+	 1 0  0
+
+
+	 0 1  	      1 0
+			0
+
+	 1 0
+			1
 	*/
 	int n;
+	list<bool> aux1;
+	list<bool> aux2;
+
+
+	if(SEXE) // MASCULINO
+	{
+		n = pt[0].second;
+
+		if (not pt[0].first.first) aux1 = a.COD_GEN[0].first;
+		else aux1 = a.COD_GEN[0].second;
+
+		if (not pt[0].first.second) aux2 = b.COD_GEN[0].first;
+		else aux2 = b.COD_GEN[0].second;		
+
+	}
+
+	else // FEMENINO
+	{
+
+	}
+	// n = punt tall, aux1 = cromosoma pare, aux2 = cromosoma mare
 	for (int i = 1; i < a.COD_GEN.size(); ++i)
 	{
 		n = pt[i].second;
 
-		list<bool> aux1;
 		if (not pt[i].first.first) aux1 = a.COD_GEN[i].first;
 		else aux1 = a.COD_GEN[i].second;
 
-		list<bool> aux2;	
 		if (not pt[i].first.second) aux2 = b.COD_GEN[i].first;
 		else aux2 = b.COD_GEN[i].second;
-	
+
 		COD_GEN[i].first = creurar_llistes(n, aux1, aux2);
 		COD_GEN[i].second = creurar_llistes(n, aux2, aux1);
 	}
@@ -53,7 +91,9 @@ list<bool> individu::creurar_llistes(int n, const list<bool> &l1, const list<boo
 {
     list<bool> aux;
 
-    list<bool>::const_iterator it_end = l1.begin();    
+    list<bool>::const_iterator it_end;
+
+	it_end = l1.begin();
 	advance(it_end,n);
     for( list<bool>::const_iterator it=l1.begin(); it != it_end; ++it)  aux.push_back(*it);
 
