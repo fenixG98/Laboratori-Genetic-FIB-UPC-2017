@@ -8,7 +8,7 @@ individu::individu()
 	
 }
 
-individu::individu(const vector<pair<pair<bool, bool>, int> > &pt,const individu a, const individu b, especie esp)
+individu::individu(const vector<pair<pair<bool, bool>, int> > &pt,const individu a, const individu b)
 {
 	amb_mare = amb_pare = true;
 	sex1 = 'X';
@@ -24,11 +24,12 @@ individu::individu(const vector<pair<pair<bool, bool>, int> > &pt,const individu
 	}
 
 	COD_GEN = vector<pair<list<bool>, list<bool> > > (a.COD_GEN.size());
-	
-	this->COD_GEN = a.COD_GEN; ///////////////////// COREGIR
-	COD_GEN = vector<pair<list<bool>, list<bool> > > (esp.consultar_numero_parells()+1);
+	/*
+	COD_GEN[0].first =
+	COD_GEN[0].second = 
+	*/
 	int n;
-	for (int i = 1; i < esp.consultar_numero_parells()+1; ++i)
+	for (int i = 1; i < a.COD_GEN.size(); ++i)
 	{
 		n = pt[i].second;
 
@@ -52,20 +53,14 @@ list<bool> individu::creurar_llistes(int n, const list<bool> &l1, const list<boo
 {
     list<bool> aux;
 
-    list<bool>::const_iterator it_end = l1.begin();
-    advance(it_end,n);
-
-    for( list<bool>::const_iterator it=l1.begin(); it != it_end; ++it) 
-    {
-        aux.push_back(*it);
-    }
+    list<bool>::const_iterator it_end = l1.begin();    
+	advance(it_end,n);
+    for( list<bool>::const_iterator it=l1.begin(); it != it_end; ++it)  aux.push_back(*it);
 
     it_end = l2.begin();
     advance(it_end,n);
-    for( list<bool>::const_iterator it=it_end; it != l2.end(); ++it) 
-    {
-        aux.push_back(*it);
-    }
+    for( list<bool>::const_iterator it=it_end; it != l2.end(); ++it) aux.push_back(*it);
+
     return aux;
 }
 

@@ -98,7 +98,7 @@ int main()
 			{
 				if (POBL.compatibles(a,b))
 				{
-					individu fill(pt,POBL.individu_nom(a),POBL.individu_nom(b),esp);
+					individu fill(pt,POBL.individu_nom(a),POBL.individu_nom(b));
 					POBL.afegir_individu(c, fill);
 					POBL.afegir_pares(a, b, c);
 				}

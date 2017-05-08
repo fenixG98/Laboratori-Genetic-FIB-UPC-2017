@@ -53,7 +53,7 @@ public:
 	 \pre <em> individuo a es compatible con b para la reproduccion</em>
 	 \post El resultado es un individuo fruto de la reproduccion sexual de a y b.
 	 \coste Constante */
-	individu(const vector<pair<pair<bool, bool>, int> > &pt, const individu a, const individu b, especie esp);
+	individu(const vector<pair<pair<bool, bool>, int> > &pt, const individu a, const individu b);
 
 
 	/** @brief Destructora por defecto.
