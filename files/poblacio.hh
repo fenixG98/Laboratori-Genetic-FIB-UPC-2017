@@ -68,8 +68,6 @@ public:
 
 	void afegir_pares(string a, string b, string c);
 
-
-	
 	//Consultores
 
 	list<string> arbre_genealogic(string nom);
@@ -126,33 +124,3 @@ public:
 };
 
 #endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
