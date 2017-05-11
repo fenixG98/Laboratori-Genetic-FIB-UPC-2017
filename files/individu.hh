@@ -34,7 +34,7 @@ private:
 	bool amb_pare;
 	bool amb_mare;
 
-	list<bool> creurar_llistes(int n, const list<bool> &l1, const list<bool> &l2);
+	list<bool> creurar_llistes(int l, int n, const list<bool> &l1, const list<bool> &l2);
 
 
 public:
@@ -53,7 +53,7 @@ public:
 	 \pre <em> individuo a es compatible con b para la reproduccion</em>
 	 \post El resultado es un individuo fruto de la reproduccion sexual de a y b.
 	 \coste Constante */
-	individu(const vector<pair<pair<bool, bool>, int> > &pt, const individu a, const individu b);
+	individu(const vector<pair<pair<bool, bool>, int> > &pt, const individu &a, const individu &b, const especie &esp);
 
 
 	/** @brief Destructora por defecto.
