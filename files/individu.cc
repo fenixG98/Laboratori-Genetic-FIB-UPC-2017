@@ -41,7 +41,7 @@ individu::individu(const vector<pair<pair<bool, bool>, int> > &pt,const individu
 		if (i!=0)
 		{
 			COD_GEN[i].first = creurar_llistes(aux1.size(), n, aux1, aux2);
-			COD_GEN[i].second = creurar_llistes(aux1.size(), n, aux2, aux1);
+			COD_GEN[i].second = creurar_llistes(aux2.size(), n, aux2, aux1);
 		}
 		else
 		{
@@ -104,6 +104,12 @@ bool individu::te_mare() const
 	return amb_mare;
 }
 
+bool individu::te_pares() const
+{
+	return amb_pare and amb_mare;
+}
+
+
 
 
 void individu::llegir(const especie &esp)
@@ -152,22 +158,22 @@ void individu::llegir(const especie &esp)
 
 void individu::escriure() const
 {
-	cout << "  " << sex1 << ": ";
-	for(std::list<bool>::const_iterator it = COD_GEN[0].first.begin(); it != COD_GEN[0].first.end(); ++it) cout << *it << ' ';
+	cout << "  " << sex1 << ':';
+	for(std::list<bool>::const_iterator it = COD_GEN[0].first.begin(); it != COD_GEN[0].first.end(); ++it) cout << ' ' << *it ;
 	cout << endl;
 
-	cout << "  " << sex2 << ": ";
-	for(std::list<bool>::const_iterator it = COD_GEN[0].second.begin(); it != COD_GEN[0].second.end(); ++it) cout << *it << ' ';
+	cout << "  " << sex2 << ':';
+	for(std::list<bool>::const_iterator it = COD_GEN[0].second.begin(); it != COD_GEN[0].second.end(); ++it) cout << ' ' << *it;
 	cout << endl;
 
 	for (int i = 1; i < COD_GEN.size(); ++i)
 	{
-		cout << "  " << i << ".1: ";
-		for(std::list<bool>::const_iterator it = COD_GEN[i].first.begin(); it != COD_GEN[i].first.end(); ++it) cout << *it << ' ';
+		cout << "  " << i << ".1:";
+		for(std::list<bool>::const_iterator it = COD_GEN[i].first.begin(); it != COD_GEN[i].first.end(); ++it) cout << ' ' << *it;
 		cout << endl;
 
-		cout << "  " << i << ".2: ";
-		for(std::list<bool>::const_iterator it = COD_GEN[i].second.begin(); it != COD_GEN[i].second.end(); ++it) cout << *it << ' ';
+		cout << "  " << i << ".2:";
+		for(std::list<bool>::const_iterator it = COD_GEN[i].second.begin(); it != COD_GEN[i].second.end(); ++it) cout << ' ' << *it;
 		cout << endl;
 	}
 }

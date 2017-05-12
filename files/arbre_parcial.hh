@@ -66,7 +66,7 @@ public:
 private:
 	static list<string> preordre( Arbre<string> &a);
 
-	static bool completar_arbre_parcial(const Arbre<string> &ap, const Arbre<string> &ag);
+	static bool r_completar_arbre_parcial(const Arbre<string> &ap, const Arbre<string> &ag);
 
 	/** @brief Operación de lectura de un árbol de strings
 	 \pre  N > 0; a es vacío

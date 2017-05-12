@@ -76,13 +76,17 @@ public:
 	 \coste Constante  */
 	bool te_pare() const;
 
-
-
 	/** @brief Consulta sie tiene madre el individuo.
 	 \pre <em>cierto</em>
 	 \post El resultado es true si tiene madre
 	 \coste Constante  */
 	bool te_mare() const;
+
+	/** @brief Consulta si tiene padres el individuo.
+	 \pre <em>cierto</em>
+	 \post El resultado es true si tiene padres
+	 \coste Constante  */
+	bool te_pares() const;
 
 	// Lectura i escriptura
 
