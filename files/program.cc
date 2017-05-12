@@ -141,6 +141,7 @@ int main()
 */
 		else if(comando == "acabar")
 		{
+			cout << "acabar";
 			return 0;
 		}
 

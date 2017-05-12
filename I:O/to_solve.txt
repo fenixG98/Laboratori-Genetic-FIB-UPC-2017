@@ -1,0 +1,10 @@
+vind[nom] ——— corretgir   (buscar) (añadir{modifica})
+
+parametros 
+
+recursividad
+
+
+parametro de repro
+
+

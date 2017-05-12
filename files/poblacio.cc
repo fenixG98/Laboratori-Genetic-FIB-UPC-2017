@@ -14,7 +14,7 @@ void poblacio::afegir_individu(const string nom, const individu& ind)
 {
 	++nind;
 	vind[nom].ind=ind;
-	vind[nom].mare=vind.end();
+	vind[nom].mare=vind.end(); /////////////////////////// FIIIIIIIIX
 	vind[nom].pare=vind.end();
 }
 
@@ -23,7 +23,7 @@ bool poblacio::compatibles(const string a,const string b)
 {
 	
 	if (vind.find(a)->second.ind.consultar_SEXE() == vind.find(b)->second.ind.consultar_SEXE()) return false;	
-	if(not vind.find(a)->second.ind.te_mare() or not vind.find(a)->second.ind.te_pare() or not vind.find(b)->second.ind.te_mare() or not vind.find(a)->second.ind.te_pare()) return true;
+	if(not vind.find(a)->second.ind.te_pares() or not vind.find(b)->second.ind.te_pares()) return true;
 	else
 	{
 		if (vind.find(a)->second.mare->first==vind.find(b)->second.mare->first) return false;
@@ -38,18 +38,9 @@ void poblacio::afegir_pares(string a, string b, string c)
 	vind.find(c)->second.pare = vind.find(b);
 }
 
-
-list<string> poblacio::arbre_genealogic(string nom)
-{
-	list<string> l;
-	generar_arbre_genealogic(l, vind.find(nom));
-	return l;
-}
-
 bool poblacio::existeix_individu(const string nom) const
 {
-	if (vind.count(nom)==0) return false;
-	return true;
+	return vind.count(nom)!=0;
 }
 
 individu poblacio::individu_nom(const string nom) const
@@ -67,7 +58,7 @@ void poblacio::llegir(const especie &esp)
 		individu ind;
 		cin >> nom;
 		ind.llegir(esp);
-		vind[nom].ind =ind;
+		vind[nom].ind =ind;  /////////////////// FIIIIIIIIIIIIX
 		vind[nom].mare=vind.end();
 		vind[nom].pare=vind.end();
 	}
@@ -91,24 +82,33 @@ void poblacio::escriure() const
 }
 
 
-void poblacio::generar_arbre_genealogic(list<string> &l1, map<string,persona>::const_iterator it)
-{	
-	if(it!=vind.end())
+void poblacio::r_arbre_genealogic(queue<string> &q, int cont)
+{
+	if(not q.empty())
 	{
-		l1.push_back(it->first);
-		generar_arbre_genealogic(l1, it->second.pare);
-		generar_arbre_genealogic(l1, it->second.mare);
+		cout << "  Nivel "<<cont<<':';
+		queue<string> aux;
+		++cont;
+		while (not q.empty())
+		{
+			cout << ' ' << q.front();
+			if (vind.find(q.front())->second.ind.te_pares())
+			{
+				aux.push(vind.find(q.front())->second.pare->first);
+				aux.push(vind.find(q.front())->second.mare->first);
+			}
+			q.pop();
+		}
+		cout << endl;
+		r_arbre_genealogic(aux, cont);
 	}
-	else l1.push_back("$");
 }
 
 void poblacio::escriure_arbre_genealogic(const string nom) 
 {
-	list<string> l;
-	generar_arbre_genealogic(l, vind.find(nom));
-	cout << "  ";
-	for(list<string>::const_iterator it=l.begin(); it != l.end(); ++it)cout << *it << ' ';
-	cout << endl;
+	queue<string> qu;
+	qu.push(nom);
+	r_arbre_genealogic(qu, 0);
 }
 
 

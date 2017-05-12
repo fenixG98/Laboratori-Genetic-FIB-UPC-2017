@@ -11,6 +11,8 @@
 #ifndef NO_DIAGRAM
 #include <map>
 #include <string>
+#include <queue>
+
 #endif
 
 /** @class poblacio
@@ -37,8 +39,7 @@ private:
 
 	static const int MAX_NIND = 200;
 
-	void generar_arbre_genealogic(list<string> &l1, map<string,persona>::const_iterator it);
-
+	void r_arbre_genealogic(queue<string> &q, int cont);
 
 public:
 
@@ -70,20 +71,6 @@ public:
 
 	//Consultores
 
-	list<string> arbre_genealogic(string nom);
-
-	/** @brief Consulta el numero de individuos de la poblacion.
-	 \pre <em>cierto</em>
-	 \post El resultado es el numero de de individuos de la poblacion
-	 \coste Constante  */
-	int mida() const;
-
-	/** @brief Consulta el numero maximo de individuos que puede contener la poblacion.
-	 \pre <em>cierto</em>
-	 \post El resultado es el numero maximo de de individuos que puede contener la poblacion
-	 \coste Constante  */
-	int mida_maxima() const;
-
 	/** @brief Consulta si los dos parametros son compatibles para la reproducción.
 	 \pre <em>cierto</em>
 	 \post El resultado es true si son de distitno genero.
@@ -91,7 +78,7 @@ public:
 	bool compatibles(const string a,const string b);
 
 	/** @brief Consulta el individuo con nombre nom.
-	 \pre <em>El individuo nom existe en l apoblacion</em>
+	 \pre <em>El individuo nom existe en la poblacion</em>
 	 \post El resultado es el individuo de nombre nom
 	 \coste Constante  */
 	individu individu_nom(const string nom) const;
