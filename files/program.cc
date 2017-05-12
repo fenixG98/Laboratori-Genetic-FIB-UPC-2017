@@ -98,7 +98,7 @@ int main()
 			{
 				if (POBL.compatibles(a,b))
 				{
-					individu fill(pt,POBL.individu_nom(a),POBL.individu_nom(b));
+					individu fill(pt,POBL.individu_nom(a),POBL.individu_nom(b),esp);
 					POBL.afegir_individu(c, fill);
 					POBL.afegir_pares(a, b, c);
 				}
@@ -141,6 +141,7 @@ int main()
 */
 		else if(comando == "acabar")
 		{
+			cout << "acabar";
 			return 0;
 		}
 
