@@ -118,7 +118,7 @@ int main()
 			else cout << "  error" << endl;
 		
 		}
-		/*
+		
 		else if(comando == "completar_arbol_genealogico")
 		{
 			string nom;
@@ -138,7 +138,7 @@ int main()
 
 			ap.escriure();
 		}
-		*/
+		
 		else if(comando == "acabar")
 		{
 			cout << "acabar";
