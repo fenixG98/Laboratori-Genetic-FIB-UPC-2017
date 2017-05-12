@@ -119,26 +119,26 @@ int main()
 		
 		}
 		/*
-
 		else if(comando == "completar_arbol_genealogico")
 		{
 			string nom;
 			cin >> nom;	
 			cout << "completar_arbol_genealogico " << nom << endl;
 			ArbreP ap;
-			ap.llegir();
+			ap.llegir(); //preordre
 
 			if (POBL.existeix_individu(nom))
 			{
-				list<string>l = POBL.arbre_genealogic(nom);
 				ArbreP apr;
 				if (apr.completar_ap(ap)) apr.escriure();
 				else cout << "  no es arbol parcial" << endl;
 			}
+			else cout << "  error" << endl;
+
 
 			ap.escriure();
 		}
-*/
+		*/
 		else if(comando == "acabar")
 		{
 			cout << "acabar";

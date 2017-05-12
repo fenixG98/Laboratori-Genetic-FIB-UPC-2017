@@ -35,12 +35,17 @@ void ArbreP::escriure()
 	list<string> l = preordre(copia);
 	for (list<string>::iterator it = l.begin(); it != l.end(); ++it) cout << *it << ' ';
 }
-/*
+
 bool ArbreP::completar_ap(const ArbreP &ag)
 {
-	if ()
+	return r_completar_arbre_parcial(ap,ag);
 }
-*/
+
+static bool r_completar_arbre_parcial(const Arbre<string> &a1, const Arbre<string> &a2) // a1 = arbreP, a2 = arbreG
+{
+	if(a1.arrel()!=a2.arrel()) return false;
+}
+
 void ArbreP::escribir_arbol_strings_id(Arbre<string> &a)
 {
 	if (not a.es_buit()) {
