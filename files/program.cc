@@ -13,11 +13,9 @@
 #include "especie.hh"
 #include "poblacio.hh"
 #include "individu.hh"
-#include "arbre_parcial.hh"
 #include "parametres_repro.hh"
 
 #ifndef NO_DIAGRAM
-#include "Arbre.hh"
 #include <iostream>
 #include <string>
 //#include "Arbre.hh"
@@ -28,6 +26,50 @@
 
 using namespace std;
 
+
+void llegir_llista_arbre(list<string>& a){
+	string x;
+  	cin >> x;
+  	if (x!= "$")
+	{
+		a.push_back(x);
+    	llegir_llista_arbre(a);
+    	llegir_llista_arbre(a);
+  	}
+	else a.push_back("$");
+}
+
+void escriure_llista_arbre(const list<string>& a)
+{
+	cout << ' ';
+	for(list<string>::const_iterator it = a.begin(); it != a.end(); ++it) cout << ' ' << *it;
+	cout << endl;	
+}
+
+bool completar_ap(list<string>& lp, const list<string>& lg)
+{
+	list<string>::iterator it1 = lp.begin();
+	list<string>::const_iterator it2 = lg.begin();
+
+	while (it1 != lp.end() and it2 != lg.end())
+	{
+		if (*it1 != "$" and *it1 != *it2) return false; 
+		if (*it1 == "$" and *it2 != "$") *it1 = "*"+*it2+"*";
+
+		++it1;
+		++it2;
+	}
+	if (it1 == lp.end() and it2 != lg.end())
+	{
+		while (it2 != lg.end())
+		{	
+			if (*it2!="$") lp.push_back("*"+*it2+"*");
+			else  lp.push_back("$");
+			++it2;
+		}
+	}
+	return true;
+}
 int main()
 {
 	especie esp;
@@ -41,9 +83,9 @@ int main()
 	{
 		if (comando == "anadir_individuo")
 		{
-			individu ind;
 			string nom;
 			cin >> nom;
+			individu ind;
 			ind.llegir(esp);
 
 			cout << "anadir_individuo " << nom << endl;
@@ -73,7 +115,6 @@ int main()
 
 		}
 
-
 		else if(comando == "reproduccion_sexual")
 		{
 			string a, b, c;
@@ -84,7 +125,7 @@ int main()
 			par_rep pt(esp);
 			pt.llegir_parametres_reproduccio();
 
-			if (POBL.existeix_individu(a) and POBL.existeix_individu(b) and not POBL.existeix_individu(c))
+			if ((POBL.existeix_individu(a) and POBL.existeix_individu(b) and not POBL.existeix_individu(c))and not ((POBL.individu_nom(a).consultar_SEXE() and not POBL.individu_nom(b).consultar_SEXE())))
 			{
 				if (POBL.compatibles(a,b))
 				{
@@ -97,6 +138,7 @@ int main()
 			}
 			else cout << "  error" << endl;
 		}
+
 		else if(comando == "escribir_arbol_genealogico")
 		{
 			string nom;
@@ -107,64 +149,31 @@ int main()
 			else cout << "  error" << endl;
 		}
 
-
-
-
-
-
-
 		else if(comando == "completar_arbol_genealogico")
 		{
-			ArbreP apr;
-			apr.llegir();
-			cout << "completar_arbol_genealogico " << apr.consultar_arrel() << endl;
+			list<string> lp;
+			llegir_llista_arbre(lp);
+			string nom = lp.front();
 
-			if (POBL.existeix_individu(apr.consultar_arrel()))
-			{
-				ArbreP apr;
-/*
-				if (apr.completar_ap(ag)) apr.escriure();
-				else cout << "  no es arbol parcial" << endl;
- */
-			}
-			else cout << "  error"<< endl;
-
-
-
-			apr.escriure();
-			cout << endl;
-		}
-
-
-
-
-		/*
-		else if(comando == "completar_arbol_genealogico")
-		{
-			string nom;
-			cin >> nom;	
 			cout << "completar_arbol_genealogico " << nom << endl;
-			ArbreP ap;
-			ap.llegir(); //preordre
+
+			
+
+			list<string> lg;
+			lg = POBL.arbre_genealogic(nom);
 
 			if (POBL.existeix_individu(nom))
 			{
-				ArbreP apr;
-				if (apr.completar_ap(ap)) apr.escriure();
-				else cout << "  no es arbol parcial" << endl;
+				if (completar_ap(lp, lg)) escriure_llista_arbre(lp);
+				else cout << "  no es arbol parcial" << endl; 
 			}
-			else cout << "  error" << endl;
-
-
-			ap.escriure();
+			else cout << "  no es arbol parcial"<< endl;
 		}
-		*/
-		
+
 		else if(comando == "acabar")
 		{
-			cout << "acabar";
-			return 0;
-		}
-
-	}
+			cout << "acabar"<<endl;
+      		return 0;
+		}	     
+    }
 }

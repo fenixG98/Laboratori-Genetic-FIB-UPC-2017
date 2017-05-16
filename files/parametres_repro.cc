@@ -10,7 +10,6 @@ par_rep::par_rep(especie &esp)
 
 par_rep::~par_rep(){}
 
-	//Consultores
 int par_rep::consultar_punt_tall(int i) const
 {
 	return pr[i].second;
@@ -28,6 +27,7 @@ int par_rep::consultar_len_x() const
 {
 	return lenX;
 }
+
 int par_rep::consultar_len_y() const
 {
 	return lenY;

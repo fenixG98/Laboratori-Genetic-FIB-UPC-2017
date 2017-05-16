@@ -44,6 +44,8 @@ public:
 
 	string consultar_arrel();
 
+	bool es_buit();
+
 	// Operadoras
 	/** @brief Completa un arbol parcial.
 	 \pre <em>cierto</em>

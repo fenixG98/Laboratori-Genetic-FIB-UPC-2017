@@ -36,14 +36,16 @@ individu::individu(par_rep &pr,const individu &a, const individu &b)
 
 		if (i!=0)
 		{
-			COD_GEN[i].first = creurar_llistes(aux1.size(), pr.consultar_punt_tall(i), aux1, aux2);
-			COD_GEN[i].second = creurar_llistes(aux2.size(), pr.consultar_punt_tall(i), aux2, aux1);
+			COD_GEN[i].first = creurar_llistes(aux2.size(), pr.consultar_punt_tall(i), aux1, aux2);
+			COD_GEN[i].second = creurar_llistes(aux1.size(), pr.consultar_punt_tall(i), aux2, aux1);
 		}
+		
 		else
 		{
 			COD_GEN[i].first = creurar_llistes(pr.consultar_len_y(), pr.consultar_punt_tall(i), aux1, aux2);
 			COD_GEN[i].second = creurar_llistes(pr.consultar_len_y(),pr.consultar_punt_tall(i), aux2, aux1);
 		}
+		
 	}
 
 }
@@ -76,7 +78,7 @@ list<bool> individu::creurar_llistes(int l, int n, const list<bool> &l1, const l
 	
 	if(cont < l1.size())
 	{
-		it_end = it_end_aux = l1.begin();
+		it_end = l1.begin();
 		advance(it_end,cont);
 		for( list<bool>::const_iterator it=it_end; it != l1.end(); ++it)  aux.push_back(*it);
 	}
@@ -84,6 +86,10 @@ list<bool> individu::creurar_llistes(int l, int n, const list<bool> &l1, const l
 	return aux;
 }
 
+char individu::consultar_crom_y() const
+{
+	return sex2;
+}
 
 bool individu::consultar_SEXE() const
 {
@@ -95,7 +101,6 @@ bool individu::te_pare() const
 	return amb_pare;
 }
 
-
 bool individu::te_mare() const
 {
 	return amb_mare;
@@ -105,9 +110,6 @@ bool individu::te_pares() const
 {
 	return amb_pare and amb_mare;
 }
-
-
-
 
 void individu::llegir(const especie &esp)
 {

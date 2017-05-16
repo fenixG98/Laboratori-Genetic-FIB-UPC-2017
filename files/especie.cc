@@ -9,7 +9,6 @@ especie::especie()
 
 especie::~especie(){}
 
-
 int especie::consultar_numero_parells() const
 {
 	return N;
@@ -41,5 +40,4 @@ void especie::llegir()
 	}
 	cin >> lx >> ly;
 	pt = vector<pair<pair<bool,bool>,int> > (N+1);
-
 }

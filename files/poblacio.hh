@@ -7,12 +7,10 @@
 
 #include "individu.hh"
 
-
 #ifndef NO_DIAGRAM
 #include <map>
 #include <string>
 #include <queue>
-#include "Arbre.hh"
 #endif
 
 /** @class poblacio
@@ -44,6 +42,8 @@ private:
 	bool r_compatibles(const string a,const string b);
 
 	bool comprobar_ascendent(string x, string marca);
+
+	void generar_arbre_genealogic(list<string> &l, map<string,persona>::const_iterator it);
 
 
 
@@ -95,8 +95,9 @@ public:
 	 \coste Constante  */
 	bool existeix_individu(const string nom) const;
 
-	Arbre<string> generar_arbre_genealogic(const string)
+	//bool completar_ap(ArbreP apr);
 
+	list<string> arbre_genealogic(const string nom);
 
 
 

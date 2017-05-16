@@ -70,6 +70,9 @@ public:
 	 \coste Constante  */
 	bool consultar_SEXE() const;
 
+	
+	char consultar_crom_y() const;
+
 	/** @brief Consulta si tiene madre el individuo.
 	 \pre <em>cierto</em>
 	 \post El resultado es true si tiene padre
