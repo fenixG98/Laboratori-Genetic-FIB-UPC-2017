@@ -125,7 +125,7 @@ int main()
 			par_rep pt(esp);
 			pt.llegir_parametres_reproduccio();
 
-			if ((POBL.existeix_individu(a) and POBL.existeix_individu(b) and not POBL.existeix_individu(c))and not ((POBL.individu_nom(a).consultar_SEXE() and not POBL.individu_nom(b).consultar_SEXE())))
+			if ((POBL.existeix_individu(a) and POBL.existeix_individu(b) and not POBL.existeix_individu(c))and not((POBL.individu_nom(a).consultar_SEXE() and not POBL.individu_nom(b).consultar_SEXE())))
 			{
 				if (POBL.compatibles(a,b))
 				{
