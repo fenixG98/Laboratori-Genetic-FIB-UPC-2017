@@ -6,13 +6,13 @@
 #define CONJ_IND_HH
 
 #include "individu.hh"
-//#include "arbre_parcial.hh"
+
 
 #ifndef NO_DIAGRAM
 #include <map>
 #include <string>
 #include <queue>
-
+#include "Arbre.hh"
 #endif
 
 /** @class poblacio
@@ -40,6 +40,12 @@ private:
 	static const int MAX_NIND = 200;
 
 	void r_arbre_genealogic(queue<string> &q, int cont);
+
+	bool r_compatibles(const string a,const string b);
+
+	bool comprobar_ascendent(string x, string marca);
+
+
 
 public:
 
@@ -89,6 +95,11 @@ public:
 	 \coste Constante  */
 	bool existeix_individu(const string nom) const;
 
+	Arbre<string> generar_arbre_genealogic(const string)
+
+
+
+
 	// Lectura i escriptura
 	
 	/** @brief Operación de lectura.
@@ -97,16 +108,20 @@ public:
 	 \coste */
 	void llegir(const especie &esp);
 
+
 	/** @brief Operación de escritura.
 	 \pre <em>cierto</em>
 	 \post Escribe el nombre, los cromosomas sexuales y los padres (si tiene) del parámetro implícito por el canal estándar de salida */
 	void escriure() const;
+
 
 	/** @brief Operación de escritur del arbre genealogic.
 	 \pre <em>cierto</em>
 	 \post Escribe el grafo-arbol(binario) de sus ascendientes en preorden.
 	 \coste */
 	void escriure_arbre_genealogic(const string nom);
+
+
 
 };
 

@@ -6,7 +6,7 @@
 #define INDIVIDU_HH
 
 #include "especie.hh"
-//#include "Arbre.hh"
+#include "parametres_repro.hh"
 
 
 #ifndef NO_DIAGRAM
@@ -53,7 +53,7 @@ public:
 	 \pre <em> individuo a es compatible con b para la reproduccion</em>
 	 \post El resultado es un individuo fruto de la reproduccion sexual de a y b.
 	 \coste Constante */
-	individu(const vector<pair<pair<bool, bool>, int> > &pt, const individu &a, const individu &b, const especie &esp);
+	individu(par_rep &pr, const individu &a, const individu &b);
 
 
 	/** @brief Destructora por defecto.

@@ -42,12 +42,14 @@ public:
 	 \coste Constante*/
 	~ArbreP();
 
+	string consultar_arrel();
+
 	// Operadoras
 	/** @brief Completa un arbol parcial.
 	 \pre <em>cierto</em>
 	 \post Es true si es parcial y escribe el arbol si este es parcial de otro
 	 \coste */
-	bool completar_ap(const ArbreP &ag);
+	bool completar_ap(ArbreP &ag);
 
 	// Lectura y escritura
 
@@ -66,7 +68,7 @@ public:
 private:
 	static list<string> preordre( Arbre<string> &a);
 
-	static bool r_completar_arbre_parcial(const Arbre<string> &ap, const Arbre<string> &ag);
+	bool r_completar_arbre_parcial(Arbre<string> &ap, Arbre<string> &ag);
 
 	/** @brief Operación de lectura de un árbol de strings
 	 \pre  N > 0; a es vacío

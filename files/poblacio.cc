@@ -14,22 +14,33 @@ void poblacio::afegir_individu(const string nom, const individu& ind)
 {
 	++nind;
 	vind[nom].ind=ind;
-	vind[nom].mare=vind.end(); /////////////////////////// FIIIIIIIIX
 	vind[nom].pare=vind.end();
+	vind[nom].mare=vind.end();
 }
 
 
 bool poblacio::compatibles(const string a,const string b)
 {
-	
-	if (vind.find(a)->second.ind.consultar_SEXE() == vind.find(b)->second.ind.consultar_SEXE()) return false;	
-	if(not vind.find(a)->second.ind.te_pares() or not vind.find(b)->second.ind.te_pares()) return true;
-	else
-	{
-		if (vind.find(a)->second.mare->first==vind.find(b)->second.mare->first) return false;
-		if (vind.find(a)->second.pare->first==vind.find(b)->second.pare->first) return false;
-	}
-	return true;
+	if(vind.find(a)->second.ind.consultar_SEXE() or not vind.find(b)->second.ind.consultar_SEXE() )
+	if (vind.find(a)->second.ind.consultar_SEXE() == vind.find(b)->second.ind.consultar_SEXE()) return false;
+		bool x, y;
+		x = comprobar_ascendent(a,b);
+		y = comprobar_ascendent(b,a);
+		return not (x or y);
+
+}
+
+bool poblacio::comprobar_ascendent(string x, string marca)
+{
+	bool b;
+	if (x==marca) return true;
+	if (vind.find(x)->second.mare == vind.end()) return false;
+		string a1 = vind.find(x)->second.mare->first;
+		string a2 = vind.find(x)->second.pare->first;
+		b=comprobar_ascendent(a1,marca);
+		if (not b) b=comprobar_ascendent(a2,marca);
+
+	return b;
 }
 
 void poblacio::afegir_pares(string a, string b, string c)
@@ -40,7 +51,7 @@ void poblacio::afegir_pares(string a, string b, string c)
 
 bool poblacio::existeix_individu(const string nom) const
 {
-	return vind.count(nom)!=0;
+	return vind.find(nom) != vind.end();
 }
 
 individu poblacio::individu_nom(const string nom) const
@@ -58,9 +69,9 @@ void poblacio::llegir(const especie &esp)
 		individu ind;
 		cin >> nom;
 		ind.llegir(esp);
-		vind[nom].ind =ind;  /////////////////// FIIIIIIIIIIIIX
-		vind[nom].mare=vind.end();
+		vind[nom].ind=ind;
 		vind[nom].pare=vind.end();
+		vind[nom].mare=vind.end();
 	}
 }
 
@@ -110,6 +121,7 @@ void poblacio::escriure_arbre_genealogic(const string nom)
 	qu.push(nom);
 	r_arbre_genealogic(qu, 0);
 }
+
 
 
 
