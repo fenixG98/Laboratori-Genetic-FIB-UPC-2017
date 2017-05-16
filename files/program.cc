@@ -14,6 +14,7 @@
 #include "poblacio.hh"
 #include "individu.hh"
 #include "arbre_parcial.hh"
+#include "parametres_repro.hh"
 
 #ifndef NO_DIAGRAM
 #include "Arbre.hh"
@@ -26,16 +27,6 @@
  */
 
 using namespace std;
-
-void llegir_vector_pair(vector<pair<pair<bool,bool>,int> > &pt)
-{
-	for (int i = 0; i < pt.size(); ++i)
-	{
-		cin >> pt[i].first.first;
-		cin >> pt[i].first.second;
-		cin >> pt[i].second;
-	}
-}
 
 int main()
 {
@@ -88,17 +79,16 @@ int main()
 			string a, b, c;
 			cin >> a >> b >> c;
 
-			vector<pair<pair<bool,bool>,int> > pt(esp.consultar_numero_parells()+1);
-			llegir_vector_pair(pt);
-
 			cout << "reproduccion_sexual " << a << ' ' << b << ' '<< c << endl;
 
+			par_rep pt(esp);
+			pt.llegir_parametres_reproduccio();
 
 			if ((POBL.existeix_individu(a) and POBL.existeix_individu(b) and not POBL.existeix_individu(c)))
 			{
 				if (POBL.compatibles(a,b))
 				{
-					individu fill(pt,POBL.individu_nom(a),POBL.individu_nom(b),esp);
+					individu fill(pt, POBL.individu_nom(a),POBL.individu_nom(b));
 					POBL.afegir_individu(c, fill);
 					POBL.afegir_pares(a, b, c);
 				}

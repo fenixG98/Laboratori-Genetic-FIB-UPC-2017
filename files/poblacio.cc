@@ -14,22 +14,25 @@ void poblacio::afegir_individu(const string nom, const individu& ind)
 {
 	++nind;
 	vind[nom].ind=ind;
-	vind[nom].mare=vind.end(); /////////////////////////// FIIIIIIIIX
 	vind[nom].pare=vind.end();
+	vind[nom].mare=vind.end();
 }
 
 
-bool poblacio::compatibles(const string a,const string b)
+bool poblacio::compatibles(const string a,const string b) /////////////////////////////// FIX
 {
 	
 	if (vind.find(a)->second.ind.consultar_SEXE() == vind.find(b)->second.ind.consultar_SEXE()) return false;	
 	if(not vind.find(a)->second.ind.te_pares() or not vind.find(b)->second.ind.te_pares()) return true;
-	else
-	{
-		if (vind.find(a)->second.mare->first==vind.find(b)->second.mare->first) return false;
-		if (vind.find(a)->second.pare->first==vind.find(b)->second.pare->first) return false;
-	}
+	//return r_compatibles(a,b);
 	return true;
+}
+
+bool poblacio::r_compatibles(const string a,const string b)
+{
+	if (vind.find(a)->second.mare->first==vind.find(b)->second.mare->first or vind.find(a)->second.pare->first==vind.find(b)->second.pare->first) return false;
+	return r_compatibles(vind.find(a)->second.mare->first, vind.find(a)->second.mare->first);
+	return r_compatibles(vind.find(b)->second.mare->first, vind.find(b)->second.mare->first);
 }
 
 void poblacio::afegir_pares(string a, string b, string c)
@@ -58,9 +61,9 @@ void poblacio::llegir(const especie &esp)
 		individu ind;
 		cin >> nom;
 		ind.llegir(esp);
-		vind[nom].ind =ind;  /////////////////// FIIIIIIIIIIIIX
-		vind[nom].mare=vind.end();
+		vind[nom].ind=ind;
 		vind[nom].pare=vind.end();
+		vind[nom].mare=vind.end();
 	}
 }
 

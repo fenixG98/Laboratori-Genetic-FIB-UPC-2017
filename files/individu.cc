@@ -8,12 +8,11 @@ individu::individu()
 
 }
 
-individu::individu(const vector<pair<pair<bool, bool>, int> > &pt,const individu &a, const individu &b, const especie &esp)
+individu::individu(par_rep &pr,const individu &a, const individu &b)
 {
 	amb_mare = amb_pare = true;
 	sex1 = 'X';
-
-	if (pt[0].first.second)
+	if (pr.consultar_ovul_esper(0).second)
 	{
 		SEXE = 1;
 		sex2 = 'Y';
@@ -26,27 +25,24 @@ individu::individu(const vector<pair<pair<bool, bool>, int> > &pt,const individu
 
 	COD_GEN = vector<pair<list<bool>, list<bool> > > (a.COD_GEN.size());
 
-	int n;
 	list <bool> aux1, aux2;
 	for (int i = 0; i < a.COD_GEN.size(); ++i)
 	{
-		n = pt[i].second;
-
-		if (not pt[i].first.first) aux1 = a.COD_GEN[i].first;
+		if (not pr.consultar_ovul_esper(i).first) aux1 = a.COD_GEN[i].first;
 		else aux1 = a.COD_GEN[i].second;
 
-		if (not pt[i].first.second) aux2 = b.COD_GEN[i].first;
+		if (not pr.consultar_ovul_esper(i).second) aux2 = b.COD_GEN[i].first;
 		else aux2 = b.COD_GEN[i].second;
 
 		if (i!=0)
 		{
-			COD_GEN[i].first = creurar_llistes(aux1.size(), n, aux1, aux2);
-			COD_GEN[i].second = creurar_llistes(aux2.size(), n, aux2, aux1);
+			COD_GEN[i].first = creurar_llistes(aux1.size(), pr.consultar_punt_tall(i), aux1, aux2);
+			COD_GEN[i].second = creurar_llistes(aux2.size(), pr.consultar_punt_tall(i), aux2, aux1);
 		}
 		else
 		{
-			COD_GEN[i].first = creurar_llistes(esp.consultar_longitud_y(), n, aux1, aux2);
-			COD_GEN[i].second = creurar_llistes(esp.consultar_longitud_y(), n, aux2, aux1);
+			COD_GEN[i].first = creurar_llistes(pr.consultar_len_y(), pr.consultar_punt_tall(i), aux1, aux2);
+			COD_GEN[i].second = creurar_llistes(pr.consultar_len_y(),pr.consultar_punt_tall(i), aux2, aux1);
 		}
 	}
 
@@ -72,11 +68,12 @@ list<bool> individu::creurar_llistes(int l, int n, const list<bool> &l1, const l
 	it_end = it_end_aux = l2.begin();
 	advance(it_end,n);
 	advance(it_end_aux,l);
-	for( list<bool>::const_iterator it=it_end; it != it_end_aux and cont<l1.size(); ++it)
+	for( list<bool>::const_iterator it=it_end; it != it_end_aux; ++it)
 	{
 		aux.push_back(*it);
 		++cont;
 	}
+	
 	if(cont < l1.size())
 	{
 		it_end = it_end_aux = l1.begin();

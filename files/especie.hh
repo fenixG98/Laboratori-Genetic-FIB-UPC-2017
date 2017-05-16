@@ -26,6 +26,9 @@ private:
 	int ly;
 	vector<int> l;
 
+	vector<pair<pair<bool,bool>,int> > pt;
+
+
 public:
 
 	//Constructores
@@ -75,7 +78,10 @@ public:
 	 \pre <em>Estan preparados en el canal estandar de entrada un entero que representa el numero de pares de cromosomas normlaes, las longitudes de dichos pares y las longitudes de los cromosomas sexuales</em>
 	 \post Lee la descripcion del parámetro implícito por el canal estándar de entrada
 	 \coste */
-	 void llegir();
+	void llegir();
+
+	void llegir_parametres_reproduccio();
+
 
 };
 

@@ -41,6 +41,9 @@ private:
 
 	void r_arbre_genealogic(queue<string> &q, int cont);
 
+	bool r_compatibles(const string a,const string b);
+
+
 public:
 
 	//Constructores

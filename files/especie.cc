@@ -39,5 +39,7 @@ void especie::llegir()
 		std::cin >> x;
 		l.push_back(x);
 	}
-	std::cin >> lx >> ly;
+	cin >> lx >> ly;
+	pt = vector<pair<pair<bool,bool>,int> > (N+1);
+
 }
