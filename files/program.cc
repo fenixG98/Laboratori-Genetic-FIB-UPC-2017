@@ -26,7 +26,7 @@
 
 using namespace std;
 
-
+//este manda
 void llegir_llista_arbre(list<string>& a){
 	string x;
   	cin >> x;
