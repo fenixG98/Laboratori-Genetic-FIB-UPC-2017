@@ -21,19 +21,31 @@ void poblacio::afegir_individu(const string nom, const individu& ind)
 
 bool poblacio::compatibles(const string a,const string b) /////////////////////////////// FIX
 {
-	
-	if (vind.find(a)->second.ind.consultar_SEXE() == vind.find(b)->second.ind.consultar_SEXE()) return false;	
-	if(not vind.find(a)->second.ind.te_pares() or not vind.find(b)->second.ind.te_pares()) return true;
-	//return r_compatibles(a,b);
-	return true;
+	// primero madre y luego padre
+	if (vind.find(a)->second.ind.consultar_SEXE() == vind.find(b)->second.ind.consultar_SEXE()) return false;	 // diferent sexe
+	//if (vind.find(a)->second.mare->first==vind.find(b)->second.mare->first or vind.find(a)->second.pare->first==vind.find(b)->second.pare->first) return false;  // no germans
+	//if(not vind.find(a)->second.ind.te_pares() and not vind.find(b)->second.ind.te_pares()) return true; // no tenen pares
+
+		bool x, y;
+		x = comprobar_ascendent(a,b); // true == encontrado
+		y = comprobar_ascendent(b,a); //
+		return not (x or y);
+
 }
 
-bool poblacio::r_compatibles(const string a,const string b)
+bool poblacio::comprobar_ascendent(string x, string marca)
 {
-	if (vind.find(a)->second.mare->first==vind.find(b)->second.mare->first or vind.find(a)->second.pare->first==vind.find(b)->second.pare->first) return false;
-	return r_compatibles(vind.find(a)->second.mare->first, vind.find(a)->second.mare->first);
-	return r_compatibles(vind.find(b)->second.mare->first, vind.find(b)->second.mare->first);
+	bool b;
+	if (x==marca) return true;
+	if (vind.find(x)->second.mare == vind.end()) return false;
+		string a1 = vind.find(x)->second.mare->first;
+		string a2 = vind.find(x)->second.pare->first;
+		b=comprobar_ascendent(a1,marca);
+		if (not b) b=comprobar_ascendent(a2,marca);
+
+	return b;
 }
+
 
 void poblacio::afegir_pares(string a, string b, string c)
 {
@@ -43,7 +55,7 @@ void poblacio::afegir_pares(string a, string b, string c)
 
 bool poblacio::existeix_individu(const string nom) const
 {
-	return vind.count(nom)!=0;
+	return vind.find(nom) != vind.end();
 }
 
 individu poblacio::individu_nom(const string nom) const

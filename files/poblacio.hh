@@ -43,6 +43,8 @@ private:
 
 	bool r_compatibles(const string a,const string b);
 
+	bool comprobar_ascendent(string x, string marca);
+
 
 public:
 
@@ -91,6 +93,7 @@ public:
 	 \post El resultado es true si el individuo existe en la poblacion
 	 \coste Constante  */
 	bool existeix_individu(const string nom) const;
+
 
 	// Lectura i escriptura
 	
