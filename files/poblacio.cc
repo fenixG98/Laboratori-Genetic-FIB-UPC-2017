@@ -19,16 +19,13 @@ void poblacio::afegir_individu(const string nom, const individu& ind)
 }
 
 
-bool poblacio::compatibles(const string a,const string b) /////////////////////////////// FIX
+bool poblacio::compatibles(const string a,const string b)
 {
-	// primero madre y luego padre
-	if (vind.find(a)->second.ind.consultar_SEXE() == vind.find(b)->second.ind.consultar_SEXE()) return false;	 // diferent sexe
-	//if (vind.find(a)->second.mare->first==vind.find(b)->second.mare->first or vind.find(a)->second.pare->first==vind.find(b)->second.pare->first) return false;  // no germans
-	//if(not vind.find(a)->second.ind.te_pares() and not vind.find(b)->second.ind.te_pares()) return true; // no tenen pares
-
+	if(vind.find(a)->second.ind.consultar_SEXE() or not vind.find(b)->second.ind.consultar_SEXE() )
+	if (vind.find(a)->second.ind.consultar_SEXE() == vind.find(b)->second.ind.consultar_SEXE()) return false;
 		bool x, y;
-		x = comprobar_ascendent(a,b); // true == encontrado
-		y = comprobar_ascendent(b,a); //
+		x = comprobar_ascendent(a,b);
+		y = comprobar_ascendent(b,a);
 		return not (x or y);
 
 }
@@ -45,7 +42,6 @@ bool poblacio::comprobar_ascendent(string x, string marca)
 
 	return b;
 }
-
 
 void poblacio::afegir_pares(string a, string b, string c)
 {
@@ -125,6 +121,7 @@ void poblacio::escriure_arbre_genealogic(const string nom)
 	qu.push(nom);
 	r_arbre_genealogic(qu, 0);
 }
+
 
 
 

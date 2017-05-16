@@ -42,6 +42,8 @@ public:
 	 \coste Constante*/
 	~ArbreP();
 
+	string consultar_arrel();
+
 	// Operadoras
 	/** @brief Completa un arbol parcial.
 	 \pre <em>cierto</em>

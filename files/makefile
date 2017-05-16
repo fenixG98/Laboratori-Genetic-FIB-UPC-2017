@@ -23,7 +23,6 @@ parametres_repro.o: parametres_repro.cc parametres_repro.hh
 	g++ -c parametres_repro.cc $(OPCIONS)
 
 clean:
-	clr
 	rm *.o
 	rm *.exe
 	rm *.gch

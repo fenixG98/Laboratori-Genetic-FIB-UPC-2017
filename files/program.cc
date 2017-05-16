@@ -84,7 +84,7 @@ int main()
 			par_rep pt(esp);
 			pt.llegir_parametres_reproduccio();
 
-			if ((POBL.existeix_individu(a) and POBL.existeix_individu(b) and not POBL.existeix_individu(c)))
+			if (POBL.existeix_individu(a) and POBL.existeix_individu(b) and not POBL.existeix_individu(c))
 			{
 				if (POBL.compatibles(a,b))
 				{
@@ -97,7 +97,6 @@ int main()
 			}
 			else cout << "  error" << endl;
 		}
-
 		else if(comando == "escribir_arbol_genealogico")
 		{
 			string nom;
@@ -106,8 +105,39 @@ int main()
 		
 			if (POBL.existeix_individu(nom)) POBL.escriure_arbre_genealogic(nom);
 			else cout << "  error" << endl;
-		
 		}
+
+
+
+
+
+
+
+		else if(comando == "completar_arbol_genealogico")
+		{
+			ArbreP apr;
+			apr.llegir();
+			cout << "completar_arbol_genealogico " << apr.consultar_arrel() << endl;
+
+			if (POBL.existeix_individu(apr.consultar_arrel()))
+			{
+				ArbreP apr;
+/*
+				if (apr.completar_ap(ag)) apr.escriure();
+				else cout << "  no es arbol parcial" << endl;
+ */
+			}
+			else cout << "  error"<< endl;
+
+
+
+			apr.escriure();
+			cout << endl;
+		}
+
+
+
+
 		/*
 		else if(comando == "completar_arbol_genealogico")
 		{
@@ -129,6 +159,7 @@ int main()
 			ap.escriure();
 		}
 		*/
+		
 		else if(comando == "acabar")
 		{
 			cout << "acabar";

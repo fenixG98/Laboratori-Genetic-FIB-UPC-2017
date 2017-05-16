@@ -29,6 +29,11 @@ void ArbreP::leer_arbol_strings(Arbre<string> &a)
 	}
 }
 
+string ArbreP::consultar_arrel()
+{
+	return ap.arrel();
+}
+
 void ArbreP::escriure()
 {
 	Arbre<string> copia(ap);
@@ -79,6 +84,7 @@ list<string> ArbreP::preordre(Arbre<string> &a)
 		l.insert(l.begin(),node);
 		l.splice(l.end(),m);
 	}
+	else l.insert(l.begin(),"$");
 	return l;
 }
 
