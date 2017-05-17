@@ -19,6 +19,7 @@ void arbre_parcial::llegir()
 
 void arbre_parcial::escriure()
 {
+	cout << ' ';
 	escriure_arbre_string(ap);
 	cout << endl;
 }
@@ -64,10 +65,64 @@ bool arbre_parcial::es_parcial(const arbre_parcial &ag)
 	return x;
 }
 
-bool arbre_parcial::r_es_parcial (const Arbre<string> &a, const Arbre<string> &b, Arbre<string> &res)
+bool arbre_parcial::r_es_parcial ( Arbre<string> &a,  Arbre<string> &b, Arbre<string> &res)//const
 {	
-	res = b;
-	return not a.es_buit() or not b.es_buit() or not res.es_buit();
+	string x;
+	if (not a.es_buit() and not b.es_buit() and a.arrel()!=b.arrel()) return false; // arrel != arrel
+	if (a.es_buit() and b.es_buit()) // $ == $
+	{
+		res.a_buit();
+		return true;
+	} 
+	if (a.es_buit() and not b.es_buit()) // $ != arrel
+	{
+		x = "*"+b.arrel()+"*";
+
+		Arbre<string> aux;
+		
+		fills_mod(aux,b);
+
+		res = aux;
+
+		return true;
+	}
+	if (not a.es_buit() and not b.es_buit() and a.arrel()==b.arrel()) // arrel == arrel
+	{
+		x = b.arrel();
+
+		Arbre<string> a1;
+		Arbre<string> a2;
+		a.fills(a1,a2);
+
+		Arbre<string> b1;
+		Arbre<string> b2;
+		b.fills(b1,b2);
+
+		Arbre<string> res1;
+		Arbre<string> res2;
+
+		r_es_parcial(a1,b1,res1);
+		r_es_parcial(a2,b2,res2);
+
+		res.plantar(x,res1,res2);
+
+		return true;
+	}
+	return false;
 }
 
+void arbre_parcial::fills_mod(Arbre<string> &a, Arbre<string> &b)
+{
+	Arbre<string> a1;
+	Arbre<string> a2;
+	if (not b.es_buit()) {
+		string x = "*"+b.arrel()+"*";
+		Arbre<string> b1;
+		Arbre<string> b2;
+		b.fills(b1,b2);
+		fills_mod(a1,b1);
+		fills_mod(a2,b2);
+		a.plantar(x,a1,a2);
+	}
+}
 

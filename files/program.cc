@@ -159,6 +159,7 @@ int main()
 			string nom =  parcial.arrel();
 
 			cout << "completar_arbol_genealogico " << nom << endl;
+			
 			arbre_parcial genealogic = POBL.arbre_genealogic(nom);
 			if (parcial.es_parcial(genealogic)) parcial.escriure();
 			else cout << "  no es arbol parcial" << endl;
