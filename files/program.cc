@@ -26,7 +26,6 @@
 
 using namespace std;
 
-//este manda mi polla
 void llegir_llista_arbre(list<string>& a){
 	string x;
   	cin >> x;
