@@ -14,6 +14,9 @@
 #include "poblacio.hh"
 #include "individu.hh"
 #include "parametres_repro.hh"
+#include "arbre_parcial.hh"
+
+
 
 #ifndef NO_DIAGRAM
 #include <iostream>
@@ -150,23 +153,12 @@ int main()
 
 		else if(comando == "completar_arbol_genealogico")
 		{
-			list<string> lp;
-			llegir_llista_arbre(lp);
-			string nom = lp.front();
+			arbre_parcial parcial;
+			parcial.llegir();
+			cout << "completar_arbol_genealogico " << parcial.arrel() << endl;
+			parcial.escriure();
+			cout << endl;
 
-			cout << "completar_arbol_genealogico " << nom << endl;
-
-			
-
-			list<string> lg;
-			lg = POBL.arbre_genealogic(nom);
-
-			if (POBL.existeix_individu(nom))
-			{
-				if (completar_ap(lp, lg)) escriure_llista_arbre(lp);
-				else cout << "  no es arbol parcial" << endl; 
-			}
-			else cout << "  no es arbol parcial"<< endl;
 		}
 
 		else if(comando == "acabar")
@@ -176,3 +168,28 @@ int main()
 		}	     
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

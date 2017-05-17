@@ -112,6 +112,10 @@ void poblacio::escriure_arbre_genealogic(const string nom)
 	r_arbre_genealogic(qu, 0);
 }
 
+
+
+
+
 list<string> poblacio::arbre_genealogic(const string nom)
 {
 	list<string> res;
