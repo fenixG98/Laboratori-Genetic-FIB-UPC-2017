@@ -27,25 +27,25 @@ private:
 
 	void escriure_arbre_string(Arbre<string>& a);
 
+	bool r_es_parcial (const Arbre<string> &a, const Arbre<string> &b, Arbre<string> &res);
+
 public:
 
 	//Constructores
 
 	arbre_parcial();
 
-	arbre_parcial(Arbre<string> &copia);
+	arbre_parcial(const Arbre<string> &copia);
 
 	~arbre_parcial();
 
 	string arrel();
 
+	bool es_parcial(const arbre_parcial &ag);
+
 	void llegir();
 
 	void escriure();
-
-
-
-
 };
 
 #endif

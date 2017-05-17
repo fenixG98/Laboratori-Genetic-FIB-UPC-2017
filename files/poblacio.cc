@@ -112,26 +112,24 @@ void poblacio::escriure_arbre_genealogic(const string nom)
 	r_arbre_genealogic(qu, 0);
 }
 
-
-
-
-
-list<string> poblacio::arbre_genealogic(const string nom)
+arbre_parcial poblacio::arbre_genealogic(const string nom)
 {
-	list<string> res;
-	generar_arbre_genealogic(res,vind.find(nom));
+	Arbre<string> aux;
+	generar_arbre_genealogic(aux,vind.find(nom));
+	arbre_parcial res (aux);
 	return res;
 }
 
-void poblacio::generar_arbre_genealogic(list<string> &l, map<string,persona>::const_iterator it)
+void poblacio::generar_arbre_genealogic(Arbre<string> &a, map<string,persona>::const_iterator it)
  {	
+	Arbre<string> a1;
+	Arbre<string> a2;
  	if(it!=vind.end())
  	{
- 		l.push_back(it->first);
- 		generar_arbre_genealogic(l, it->second.pare);
- 		generar_arbre_genealogic(l, it->second.mare);
+		generar_arbre_genealogic(a1, it->second.pare);
+ 		generar_arbre_genealogic(a2, it->second.mare);
+		a.plantar(it->first,a1,a2);
  	}
- 	else l.push_back("$");
 }
 
 

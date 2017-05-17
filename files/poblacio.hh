@@ -6,11 +6,13 @@
 #define CONJ_IND_HH
 
 #include "individu.hh"
+#include "arbre_parcial.hh"
 
 #ifndef NO_DIAGRAM
 #include <map>
 #include <string>
 #include <queue>
+#include "Arbre.hh"
 #endif
 
 /** @class poblacio
@@ -43,7 +45,7 @@ private:
 
 	bool comprobar_ascendent(string x, string marca);
 
-	void generar_arbre_genealogic(list<string> &l, map<string,persona>::const_iterator it);
+	void generar_arbre_genealogic(Arbre<string> &a, map<string,persona>::const_iterator it);
 
 
 
@@ -97,7 +99,7 @@ public:
 
 	//bool completar_ap(ArbreP apr);
 
-	list<string> arbre_genealogic(const string nom);
+	arbre_parcial arbre_genealogic(const string nom);
 
 
 

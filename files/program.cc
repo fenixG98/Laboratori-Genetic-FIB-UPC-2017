@@ -29,7 +29,8 @@
 
 using namespace std;
 
-void llegir_llista_arbre(list<string>& a){
+void llegir_llista_arbre(list<string>& a)
+{
 	string x;
   	cin >> x;
   	if (x!= "$")
@@ -155,10 +156,12 @@ int main()
 		{
 			arbre_parcial parcial;
 			parcial.llegir();
-			cout << "completar_arbol_genealogico " << parcial.arrel() << endl;
-			parcial.escriure();
-			cout << endl;
+			string nom =  parcial.arrel();
 
+			cout << "completar_arbol_genealogico " << nom << endl;
+			arbre_parcial genealogic = POBL.arbre_genealogic(nom);
+			if (parcial.es_parcial(genealogic)) parcial.escriure();
+			else cout << "  no es arbol parcial" << endl;
 		}
 
 		else if(comando == "acabar")
