@@ -68,25 +68,11 @@ bool arbre_parcial::es_parcial(const arbre_parcial &ag)
 bool arbre_parcial::r_es_parcial ( Arbre<string> &a,  Arbre<string> &b, Arbre<string> &res)//const
 {	
 	string x;
-	if (not a.es_buit() and not b.es_buit() and a.arrel()!=b.arrel()) return false; // arrel != arrel
-	if (a.es_buit() and b.es_buit()) // $ == $
-	{
-		res.a_buit();
-		return true;
-	} 
-	if (a.es_buit() and not b.es_buit()) // $ != arrel
-	{
-		x = "*"+b.arrel()+"*";
+	bool bo = true;
+	
+	if (a.es_buit() and b.es_buit()) bo = true; // $ $
 
-		Arbre<string> aux;
-		
-		fills_mod(aux,b);
-
-		res = aux;
-
-		return true;
-	}
-	if (not a.es_buit() and not b.es_buit() and a.arrel()==b.arrel()) // arrel == arrel
+	else if (not a.es_buit() and not b.es_buit() and a.arrel()==b.arrel()) // arrel1 == arrel1
 	{
 		x = b.arrel();
 
@@ -101,14 +87,25 @@ bool arbre_parcial::r_es_parcial ( Arbre<string> &a,  Arbre<string> &b, Arbre<st
 		Arbre<string> res1;
 		Arbre<string> res2;
 
-		r_es_parcial(a1,b1,res1);
-		r_es_parcial(a2,b2,res2);
+		bo = r_es_parcial(a1,b1,res1);
+		if (bo) bo = r_es_parcial(a2,b2,res2);
 
 		res.plantar(x,res1,res2);
-
-		return true;
 	}
-	return false;
+
+	else if (a.es_buit() and not b.es_buit()) // $ arrel1
+	{
+		x = "*"+b.arrel()+"*";
+
+		Arbre<string> aux;
+		
+		fills_mod(aux,b);
+
+		res = aux;
+		bo = true;
+	}
+	else bo = false;
+	return bo;
 }
 
 void arbre_parcial::fills_mod(Arbre<string> &a, Arbre<string> &b)

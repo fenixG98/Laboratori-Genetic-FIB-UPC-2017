@@ -160,9 +160,16 @@ int main()
 
 			cout << "completar_arbol_genealogico " << nom << endl;
 			
-			arbre_parcial genealogic = POBL.arbre_genealogic(nom);
-			if (parcial.es_parcial(genealogic)) parcial.escriure();
-			else cout << "  no es arbol parcial" << endl;
+			if(POBL.existeix_individu(nom))
+			{
+				arbre_parcial genealogic = POBL.arbre_genealogic(nom);
+				//cout << "  genealogico: "<< endl;
+				//genealogic.escriure();
+				//cout << "  parcial: "<<endl;
+				if (parcial.es_parcial(genealogic)) parcial.escriure();
+				else cout << "  no es arbol parcial" << endl;
+			} 
+			else cout << "  no es arbol parcial" << endl;			
 		}
 
 		else if(comando == "acabar")
