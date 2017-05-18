@@ -23,7 +23,8 @@ arbre_parcial.o: arbre_parcial.cc arbre_parcial.hh Arbre.hh
 	g++ -c arbre_parcial.cc $(OPCIONS)
 
 clean:
-	rm *.o
+	rm *.txt
 	rm *.exe
+
 practica.tar:
 	tar -cvf practica.tar *.hh *.cc makefile
