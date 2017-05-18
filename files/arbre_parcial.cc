@@ -1,6 +1,5 @@
 #include "arbre_parcial.hh"
 
-
 arbre_parcial::arbre_parcial() {}
 
 arbre_parcial::arbre_parcial(const Arbre<string> &original)
@@ -10,7 +9,6 @@ arbre_parcial::arbre_parcial(const Arbre<string> &original)
 }
 
 arbre_parcial::~arbre_parcial() {}
-
 
 void arbre_parcial::llegir()
 {

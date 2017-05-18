@@ -10,7 +10,6 @@
 
 #ifndef NO_DIAGRAM
 #include <map>
-#include <string>
 #include <queue>
 #include "Arbre.hh"
 #endif

@@ -1,6 +1,7 @@
 #include "poblacio.hh"
 
-poblacio::poblacio() {
+poblacio::poblacio() 
+{
 	nind = 0;
 }
 
@@ -11,6 +12,7 @@ void poblacio::afegir_individu(const string nom, const individu& ind)
 	vind[nom].ind=ind;
 	vind[nom].pare=vind.end();
 	vind[nom].mare=vind.end();
+
 	++nind;
 }
 
@@ -19,21 +21,25 @@ bool poblacio::compatibles(const string a,const string b)
 	if (vind.find(a)->second.ind.consultar_SEXE() == vind.find(b)->second.ind.consultar_SEXE()) return false;
 	if (vind.find(a)->second.ind.consultar_SEXE() and not vind.find(b)->second.ind.consultar_SEXE()) return false;
 	if (vind.find(a)->second.ind.te_pares() and vind.find(b)->second.ind.te_pares()) if((vind.find(a)->second.mare->first == vind.find(b)->second.mare->first)or(vind.find(a)->second.pare->first == vind.find(b)->second.pare->first))return false;
+	
 	bool x, y;
 	x = comprobar_ascendent(a,b);
 	y = comprobar_ascendent(b,a);
+
 	return not (x or y);
 }
 
 bool poblacio::comprobar_ascendent(string x, string marca)
 {
 	bool b;
+
 	if (x==marca) return true;
 	if (vind.find(x)->second.mare == vind.end()) return false;
 
 	string a1 = vind.find(x)->second.mare->first;
 	string a2 = vind.find(x)->second.pare->first;
 	b=comprobar_ascendent(a1,marca);
+
 	if (not b) b=comprobar_ascendent(a2,marca);
 
 	return b;
@@ -57,14 +63,16 @@ individu poblacio::individu_nom(const string nom) const
 
 void poblacio::llegir(const especie &esp)
 {
-
 	cin >> nind;
+
 	for (int a = 0; a < nind; ++a)
 	{
 		string nom;
-		individu ind;
 		cin >> nom;
+				
+		individu ind;
 		ind.llegir(esp);
+
 		vind[nom].ind=ind;
 		vind[nom].pare=vind.end();
 		vind[nom].mare=vind.end();
@@ -91,17 +99,21 @@ void poblacio::r_arbre_genealogic(queue<string> &q, int cont)
 		cout << "  Nivel "<<cont<<':';
 		queue<string> aux;
 		++cont;
+
 		while (not q.empty())
 		{
 			cout << ' ' << q.front();
+
 			if (vind.find(q.front())->second.ind.te_pares())
 			{
 				aux.push(vind.find(q.front())->second.pare->first);
 				aux.push(vind.find(q.front())->second.mare->first);
 			}
+
 			q.pop();
 		}
 		cout << endl;
+
 		r_arbre_genealogic(aux, cont);
 	}
 }
@@ -110,6 +122,7 @@ void poblacio::escriure_arbre_genealogic(const string nom)
 {
 	queue<string> qu;
 	qu.push(nom);
+
 	r_arbre_genealogic(qu, 0);
 }
 
@@ -118,6 +131,7 @@ arbre_parcial poblacio::arbre_genealogic(const string nom)
 	Arbre<string> aux;
 	generar_arbre_genealogic(aux,vind.find(nom));
 	arbre_parcial res (aux);
+
 	return res;
 }
 
@@ -125,36 +139,12 @@ void poblacio::generar_arbre_genealogic(Arbre<string> &a, map<string,persona>::c
  {	
 	Arbre<string> a1;
 	Arbre<string> a2;
+
  	if(it!=vind.end())
  	{
 		generar_arbre_genealogic(a1, it->second.pare);
  		generar_arbre_genealogic(a2, it->second.mare);
+		 
 		a.plantar(it->first,a1,a2);
  	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

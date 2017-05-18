@@ -16,12 +16,8 @@
 #include "parametres_repro.hh"
 #include "arbre_parcial.hh"
 
-
-
 #ifndef NO_DIAGRAM
 #include <iostream>
-#include <string>
-//#include "Arbre.hh"
 #endif
 
 /** @brief Programa principal para la practica <em>Experimentos genéticos en laboratorio</em>.
@@ -44,10 +40,10 @@ int main()
 		{
 			string nom;
 			cin >> nom;
+			cout << "anadir_individuo " << nom << endl;
+
 			individu ind;
 			ind.llegir(esp);
-
-			cout << "anadir_individuo " << nom << endl;
 
 			if (not POBL.existeix_individu(nom)) POBL.afegir_individu(nom, ind);
 			else cout << "  error" << endl;
@@ -71,14 +67,12 @@ int main()
 				ind.escriure();
 			}
 			else cout << "  error" << endl;
-
 		}
 
 		else if(comando == "reproduccion_sexual")
 		{
 			string a, b, c;
 			cin >> a >> b >> c;
-
 			cout << "reproduccion_sexual " << a << ' ' << b << ' '<< c << endl;
 
 			par_rep pt(esp);
@@ -93,7 +87,6 @@ int main()
 					POBL.afegir_pares(a, b, c);
 				}
 				else cout << "  no es posible reproduccion" << endl;
-
 			}
 			else cout << "  error" << endl;
 		}
@@ -112,8 +105,8 @@ int main()
 		{
 			arbre_parcial parcial;
 			parcial.llegir();
+			
 			string nom =  parcial.arrel();
-
 			cout << "completar_arbol_genealogico " << nom << endl;
 			
 			if(POBL.existeix_individu(nom))

@@ -45,5 +45,6 @@ void especie::llegir()
 		cin >> x;
 		l.push_back(x);
 	}
+	
 	cin >> lx >> ly;
 }

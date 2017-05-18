@@ -5,12 +5,12 @@ individu::individu()
 {
 	amb_mare = amb_pare = false;
 	sex1 = 'X';
-
 }
 
 individu::individu(par_rep &pr,const individu &a, const individu &b)
 {
 	amb_mare = amb_pare = true;
+
 	sex1 = 'X';
 	if (pr.consultar_ovul_esper(0).second)
 	{
@@ -120,7 +120,6 @@ void individu::llegir(const especie &esp)
 	cin >> sex2;
 
 	if (sex2=='X') SEXE = 0;
-
 	else if (sex2=='Y')
 	{
 		SEXE = 1;
@@ -134,6 +133,7 @@ void individu::llegir(const especie &esp)
 		COD_GEN[0].first.push_back(x);
 
 	}
+
 	for (int i = 0; i < d; ++i)
 	{
 		cin >> x;
@@ -141,7 +141,8 @@ void individu::llegir(const especie &esp)
 
 	}
 
-	for (int i = 1; i <= esp.consultar_numero_parells(); ++i) 	{
+	for (int i = 1; i <= esp.consultar_numero_parells(); ++i) 
+	{
 		for (int j = 0; j < esp.consultar_longitud_i(i); ++j)
 		{
 			cin >> x;
