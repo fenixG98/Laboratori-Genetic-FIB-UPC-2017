@@ -1,5 +1,3 @@
-vind[nom] ——— corretgir   (buscar) (añadir{modifica})
-
 parametros 
 
 recursividad
