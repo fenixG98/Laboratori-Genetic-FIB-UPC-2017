@@ -29,15 +29,21 @@ int especie::consultar_longitud_i(int i) const
 	return l[i];
 }
 
+int especie::consultar_longitud_repro() const
+{
+	return l[0];
+}
+
+
 void especie::llegir()
 {
 	int x;
-	std::cin >> N;
+	cin >> N;
+
 	for (int i = 0; i <= N; ++i)
 	{
-		std::cin >> x;
+		cin >> x;
 		l.push_back(x);
 	}
 	cin >> lx >> ly;
-	pt = vector<pair<pair<bool,bool>,int> > (N+1);
 }

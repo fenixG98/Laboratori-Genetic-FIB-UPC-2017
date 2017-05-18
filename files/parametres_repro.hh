@@ -18,8 +18,7 @@ class par_rep
 
 private:
 
-	int lenX;
-	int lenY;
+	int lenRep;
 	vector <pair<pair<bool,bool>,int> >pr;
 
 
@@ -50,18 +49,11 @@ public:
 
 	pair<bool,bool> consultar_ovul_esper(int i);
 
-
-	/** @brief Consulta la longitud del cromosoma sexual X.
-	 \pre <em>cierto</em>
-	 \post El resultado es la longitud del cromosoma X
-	 \coste Constante  */
-	int consultar_len_x() const;
-
 	/** @brief Consulta la longitud del cromosoma sexual Y.
 	 \pre <em>cierto</em>
 	 \post El resultado es la longitud del cromosoma Y
 	 \coste Constante  */
-	int consultar_len_y() const;
+	int consultar_len_rep() const;
 
 
 	// Lectura i escriptura

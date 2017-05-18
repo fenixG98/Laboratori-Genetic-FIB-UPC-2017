@@ -29,50 +29,6 @@
 
 using namespace std;
 
-void llegir_llista_arbre(list<string>& a)
-{
-	string x;
-  	cin >> x;
-  	if (x!= "$")
-	{
-		a.push_back(x);
-    	llegir_llista_arbre(a);
-    	llegir_llista_arbre(a);
-  	}
-	else a.push_back("$");
-}
-
-void escriure_llista_arbre(const list<string>& a)
-{
-	cout << ' ';
-	for(list<string>::const_iterator it = a.begin(); it != a.end(); ++it) cout << ' ' << *it;
-	cout << endl;	
-}
-
-bool completar_ap(list<string>& lp, const list<string>& lg)
-{
-	list<string>::iterator it1 = lp.begin();
-	list<string>::const_iterator it2 = lg.begin();
-
-	while (it1 != lp.end() and it2 != lg.end())
-	{
-		if (*it1 != "$" and *it1 != *it2) return false; 
-		if (*it1 == "$" and *it2 != "$") *it1 = "*"+*it2+"*";
-
-		++it1;
-		++it2;
-	}
-	if (it1 == lp.end() and it2 != lg.end())
-	{
-		while (it2 != lg.end())
-		{	
-			if (*it2!="$") lp.push_back("*"+*it2+"*");
-			else  lp.push_back("$");
-			++it2;
-		}
-	}
-	return true;
-}
 int main()
 {
 	especie esp;
@@ -128,7 +84,7 @@ int main()
 			par_rep pt(esp);
 			pt.llegir_parametres_reproduccio();
 
-			if ((POBL.existeix_individu(a) and POBL.existeix_individu(b) and not POBL.existeix_individu(c))and not((POBL.individu_nom(a).consultar_SEXE() and not POBL.individu_nom(b).consultar_SEXE())))
+			if ((POBL.existeix_individu(a) and POBL.existeix_individu(b) and not POBL.existeix_individu(c)))
 			{
 				if (POBL.compatibles(a,b))
 				{

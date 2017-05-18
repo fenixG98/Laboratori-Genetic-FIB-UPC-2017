@@ -4,8 +4,7 @@ par_rep::par_rep(especie &esp)
 {
 
 	pr = vector <pair<pair<bool,bool>,int> > (esp.consultar_numero_parells()+1);
-	lenX = esp.consultar_longitud_x();
-	lenY = esp.consultar_longitud_y();
+	lenRep = esp.consultar_longitud_repro();
 }
 
 par_rep::~par_rep(){}
@@ -23,14 +22,9 @@ pair<bool,bool> par_rep::consultar_ovul_esper(int i)
 	return res;
 }
 
-int par_rep::consultar_len_x() const
+int par_rep::consultar_len_rep() const
 {
-	return lenX;
-}
-
-int par_rep::consultar_len_y() const
-{
-	return lenY;
+	return lenRep;
 }
 
 void par_rep::llegir_parametres_reproduccio()

@@ -36,14 +36,14 @@ individu::individu(par_rep &pr,const individu &a, const individu &b)
 
 		if (i!=0)
 		{
-			COD_GEN[i].first = creurar_llistes(aux2.size(), pr.consultar_punt_tall(i), aux1, aux2);
-			COD_GEN[i].second = creurar_llistes(aux1.size(), pr.consultar_punt_tall(i), aux2, aux1);
+			COD_GEN[i].first = creurar_llistes(int(aux1.size()), pr.consultar_punt_tall(i), aux1, aux2);
+			COD_GEN[i].second = creurar_llistes(int(aux2.size()), pr.consultar_punt_tall(i), aux2, aux1);
 		}
 		
 		else
 		{
-			COD_GEN[i].first = creurar_llistes(pr.consultar_len_y(), pr.consultar_punt_tall(i), aux1, aux2);
-			COD_GEN[i].second = creurar_llistes(pr.consultar_len_y(),pr.consultar_punt_tall(i), aux2, aux1);
+			COD_GEN[i].first = creurar_llistes(pr.consultar_len_rep(), pr.consultar_punt_tall(i), aux1, aux2);
+			COD_GEN[i].second = creurar_llistes(pr.consultar_len_rep(),pr.consultar_punt_tall(i), aux2, aux1);
 		}
 		
 	}

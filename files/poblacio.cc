@@ -17,6 +17,7 @@ void poblacio::afegir_individu(const string nom, const individu& ind)
 bool poblacio::compatibles(const string a,const string b) 
 {
 	if (vind.find(a)->second.ind.consultar_SEXE() == vind.find(b)->second.ind.consultar_SEXE()) return false;
+	if (vind.find(a)->second.ind.consultar_SEXE() and not vind.find(b)->second.ind.consultar_SEXE()) return false;
 	if (vind.find(a)->second.ind.te_pares() and vind.find(b)->second.ind.te_pares()) if((vind.find(a)->second.mare->first == vind.find(b)->second.mare->first)or(vind.find(a)->second.pare->first == vind.find(b)->second.pare->first))return false;
 	bool x, y;
 	x = comprobar_ascendent(a,b);

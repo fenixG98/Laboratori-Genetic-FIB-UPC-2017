@@ -26,9 +26,6 @@ private:
 	int ly;
 	vector<int> l;
 
-	vector<pair<pair<bool,bool>,int> > pt;
-
-
 public:
 
 	//Constructores
@@ -65,6 +62,12 @@ public:
 	 \post El resultado es la longitud del cromosoma Y
 	 \coste Constante  */
 	int consultar_longitud_y() const;
+
+	/** @brief Consulta la longitud del cromosoma sexual Y.
+	 \pre <em>cierto</em>
+	 \post El resultado es la longitud del cromosoma Y
+	 \coste Constante  */
+	int consultar_longitud_repro() const;
 
 	/** @brief Consulta la longitud de un cromosoma normal.
 	 \pre <em>cierto</em>
