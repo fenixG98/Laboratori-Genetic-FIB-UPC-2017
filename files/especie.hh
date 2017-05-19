@@ -83,9 +83,6 @@ public:
 	 \coste */
 	void llegir();
 
-	void llegir_parametres_reproduccio();
-
-
 };
 
 #endif

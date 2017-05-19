@@ -34,7 +34,6 @@ int especie::consultar_longitud_repro() const
 	return l[0];
 }
 
-
 void especie::llegir()
 {
 	int x;

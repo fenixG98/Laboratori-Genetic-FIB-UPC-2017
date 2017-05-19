@@ -34,19 +34,17 @@ private:
 		map<string,persona>::const_iterator pare;
 	};
 
+	//typedef map<string,persona>::const_iterator ItC;
+	//typedef map<string,persona>::iterator It;
+
 	map<string,persona> vind;
 
-	static const int MAX_NIND = 200;
-
-	void r_arbre_genealogic(queue<string> &q, int cont);
-
-	bool r_compatibles(const string a,const string b);
-
-	bool comprobar_ascendent(string x, string marca);
 
 	void generar_arbre_genealogic(Arbre<string> &a, map<string,persona>::const_iterator it);
 
+	void r_arbre_genealogic(queue<string> &q, int cont);
 
+	bool r_comprobar_ascendent(string x, string marca);
 
 public:
 
@@ -74,7 +72,7 @@ public:
 	void afegir_individu(const string nom, const individu& ind);
 
 
-	void afegir_pares(string a, string b, string c);
+	void afegir_pares(const string a, const string b, const string c);
 
 	//Consultores
 

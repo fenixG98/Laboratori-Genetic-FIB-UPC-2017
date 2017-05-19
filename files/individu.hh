@@ -27,12 +27,9 @@ private:
 
 	vector<pair<list<bool>, list<bool> > > COD_GEN ;
 
-	char sex1;
-	char sex2;
 	bool SEXE;
 
-	bool amb_pare;
-	bool amb_mare;
+	bool amb_pares;
 
 	list<bool> creurar_llistes(int l, int n, const list<bool> &l1, const list<bool> &l2);
 
@@ -69,21 +66,6 @@ public:
 	 \post El resultado es el sexo del individuo
 	 \coste Constante  */
 	bool consultar_SEXE() const;
-
-	
-	char consultar_crom_y() const;
-
-	/** @brief Consulta si tiene madre el individuo.
-	 \pre <em>cierto</em>
-	 \post El resultado es true si tiene padre
-	 \coste Constante  */
-	bool te_pare() const;
-
-	/** @brief Consulta sie tiene madre el individuo.
-	 \pre <em>cierto</em>
-	 \post El resultado es true si tiene madre
-	 \coste Constante  */
-	bool te_mare() const;
 
 	/** @brief Consulta si tiene padres el individuo.
 	 \pre <em>cierto</em>

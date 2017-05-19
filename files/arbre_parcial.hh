@@ -41,7 +41,7 @@ public:
 
 	~arbre_parcial();
 
-	string arrel();
+	string consultar_NOM() const;
 
 	bool es_parcial(const arbre_parcial &ag);
 

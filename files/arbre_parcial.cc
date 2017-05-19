@@ -1,25 +1,18 @@
 #include "arbre_parcial.hh"
 
-arbre_parcial::arbre_parcial() {}
+// Private
 
-arbre_parcial::arbre_parcial(const Arbre<string> &original)
-{
-	Arbre<string> aux(original);
-	this->ap = aux;
-}
 
-arbre_parcial::~arbre_parcial() {}
-
-void arbre_parcial::llegir()
-{
-	llegir_arbre_string(ap);
-}
-
-void arbre_parcial::escriure()
-{
-	cout << ' ';
-	escriure_arbre_string(ap);
-	cout << endl;
+void arbre_parcial::llegir_arbre_string(Arbre<string>& a){
+	Arbre<string> a1;
+	Arbre<string> a2;
+	string x;
+	cin >> x;
+	if (x!= "$") {
+		llegir_arbre_string(a1);
+		llegir_arbre_string(a2);
+		a.plantar(x,a1,a2);
+	}
 }
 
 void arbre_parcial::escriure_arbre_string(Arbre<string>& a) {
@@ -35,39 +28,11 @@ void arbre_parcial::escriure_arbre_string(Arbre<string>& a) {
 	else cout << ' ' << "$";
 }
 
-void arbre_parcial::llegir_arbre_string(Arbre<string>& a){
-	Arbre<string> a1;
-	Arbre<string> a2;
-	string x;
-	cin >> x;
-	if (x!= "$") {
-		llegir_arbre_string(a1);
-		llegir_arbre_string(a2);
-		a.plantar(x,a1,a2);
-	}
-}
-
-string arbre_parcial::arrel()
+bool arbre_parcial::r_es_parcial ( Arbre<string> &a,  Arbre<string> &b, Arbre<string> &res)
 {
-	return ap.arrel();
-}
-
-bool arbre_parcial::es_parcial(const arbre_parcial &ag)
-{
-	Arbre<string> arP(this->ap);
-	Arbre<string> arG(ag.ap);
-	Arbre<string> res;
-
-	bool x = r_es_parcial (arP,arG, res);
-	this->ap = res;
-	return x;
-}
-
-bool arbre_parcial::r_es_parcial ( Arbre<string> &a,  Arbre<string> &b, Arbre<string> &res)//const
-{	
 	string x;
 	bool bo = true;
-	
+
 	if (a.es_buit() and b.es_buit()) bo = true; // $ $
 
 	else if (not a.es_buit() and not b.es_buit() and a.arrel()==b.arrel()) // arrel1 == arrel1
@@ -96,7 +61,7 @@ bool arbre_parcial::r_es_parcial ( Arbre<string> &a,  Arbre<string> &b, Arbre<st
 		x = "*"+b.arrel()+"*";
 
 		Arbre<string> aux;
-		
+
 		fills_mod(aux,b);
 
 		res = aux;
@@ -120,4 +85,45 @@ void arbre_parcial::fills_mod(Arbre<string> &a, Arbre<string> &b)
 		a.plantar(x,a1,a2);
 	}
 }
+
+
+arbre_parcial::arbre_parcial() {}
+
+arbre_parcial::arbre_parcial(const Arbre<string> &original)
+{
+	Arbre<string> aux(original);
+	this->ap = aux;
+}
+
+arbre_parcial::~arbre_parcial() {}
+
+string arbre_parcial::consultar_NOM() const
+{
+	return ap.arrel();
+}
+
+bool arbre_parcial::es_parcial(const arbre_parcial &ag)
+{
+	Arbre<string> arP(this->ap);
+	Arbre<string> arG(ag.ap);
+	Arbre<string> res;
+
+	bool x = r_es_parcial (arP,arG, res);
+	this->ap = res;
+	return x;
+}
+
+void arbre_parcial::llegir()
+{
+	llegir_arbre_string(ap);
+}
+
+void arbre_parcial::escriure()
+{
+	cout << ' ';
+	escriure_arbre_string(ap);
+	cout << endl;
+}
+
+
 

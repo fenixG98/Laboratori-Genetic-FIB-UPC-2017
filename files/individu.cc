@@ -1,56 +1,6 @@
 #include "individu.hh"
 
-
-individu::individu()
-{
-	amb_mare = amb_pare = false;
-	sex1 = 'X';
-}
-
-individu::individu(par_rep &pr,const individu &a, const individu &b)
-{
-	amb_mare = amb_pare = true;
-
-	sex1 = 'X';
-	if (pr.consultar_ovul_esper(0).second)
-	{
-		SEXE = 1;
-		sex2 = 'Y';
-	}
-	else
-	{
-		SEXE = 0;
-		sex2 = 'X';
-	}
-
-	COD_GEN = vector<pair<list<bool>, list<bool> > > (a.COD_GEN.size());
-
-	list <bool> aux1, aux2;
-	for (int i = 0; i < a.COD_GEN.size(); ++i)
-	{
-		if (not pr.consultar_ovul_esper(i).first) aux1 = a.COD_GEN[i].first;
-		else aux1 = a.COD_GEN[i].second;
-
-		if (not pr.consultar_ovul_esper(i).second) aux2 = b.COD_GEN[i].first;
-		else aux2 = b.COD_GEN[i].second;
-
-		if (i!=0)
-		{
-			COD_GEN[i].first = creurar_llistes(int(aux1.size()), pr.consultar_punt_tall(i), aux1, aux2);
-			COD_GEN[i].second = creurar_llistes(int(aux2.size()), pr.consultar_punt_tall(i), aux2, aux1);
-		}
-		
-		else
-		{
-			COD_GEN[i].first = creurar_llistes(pr.consultar_len_rep(), pr.consultar_punt_tall(i), aux1, aux2);
-			COD_GEN[i].second = creurar_llistes(pr.consultar_len_rep(),pr.consultar_punt_tall(i), aux2, aux1);
-		}
-		
-	}
-
-}
-
-individu::~individu(){}
+// Privats
 
 list<bool> individu::creurar_llistes(int l, int n, const list<bool> &l1, const list<bool> &l2)
 {
@@ -75,7 +25,7 @@ list<bool> individu::creurar_llistes(int l, int n, const list<bool> &l1, const l
 		aux.push_back(*it);
 		++cont;
 	}
-	
+
 	if(cont < l1.size())
 	{
 		it_end = l1.begin();
@@ -86,29 +36,55 @@ list<bool> individu::creurar_llistes(int l, int n, const list<bool> &l1, const l
 	return aux;
 }
 
-char individu::consultar_crom_y() const
+// Publics
+
+individu::individu()
 {
-	return sex2;
+	amb_pares = false;
 }
+
+individu::individu(par_rep &pr,const individu &a, const individu &b)
+{
+	amb_pares = true;
+
+	if (pr.consultar_ovul_esper(0).second) SEXE = 1;
+	else SEXE = 0;
+
+	COD_GEN = vector<pair<list<bool>, list<bool> > > (a.COD_GEN.size());
+
+	list <bool> aux1, aux2;
+	for (int i = 0; i < a.COD_GEN.size(); ++i)
+	{
+		if (not pr.consultar_ovul_esper(i).first) aux1 = a.COD_GEN[i].first;
+		else aux1 = a.COD_GEN[i].second;
+
+		if (not pr.consultar_ovul_esper(i).second) aux2 = b.COD_GEN[i].first;
+		else aux2 = b.COD_GEN[i].second;
+
+		if (i!=0)
+		{
+			COD_GEN[i].first = creurar_llistes(int(aux1.size()), pr.consultar_punt_tall(i), aux1, aux2);
+			COD_GEN[i].second = creurar_llistes(int(aux2.size()), pr.consultar_punt_tall(i), aux2, aux1);
+		}
+		
+		else
+		{
+			COD_GEN[i].first = creurar_llistes(pr.consultar_len_rep(), pr.consultar_punt_tall(i), aux1, aux2);
+			COD_GEN[i].second = creurar_llistes(pr.consultar_len_rep(),pr.consultar_punt_tall(i), aux2, aux1);
+		}
+	}
+}
+
+individu::~individu(){}
 
 bool individu::consultar_SEXE() const
 {
 	return SEXE;
 }
 
-bool individu::te_pare() const
-{
-	return amb_pare;
-}
-
-bool individu::te_mare() const
-{
-	return amb_mare;
-}
-
 bool individu::te_pares() const
 {
-	return amb_pare and amb_mare;
+	return amb_pares;
 }
 
 void individu::llegir(const especie &esp)
@@ -116,7 +92,7 @@ void individu::llegir(const especie &esp)
 	COD_GEN = vector<pair<list<bool>, list<bool> > > (esp.consultar_numero_parells()+1);
 
 	int d = esp.consultar_longitud_x();
-
+	char sex2;
 	cin >> sex2;
 
 	if (sex2=='X') SEXE = 0;
@@ -158,11 +134,15 @@ void individu::llegir(const especie &esp)
 
 void individu::escriure() const
 {
-	cout << "  " << sex1 << ':';
+	cout << "  " << "X:";
 	for(std::list<bool>::const_iterator it = COD_GEN[0].first.begin(); it != COD_GEN[0].first.end(); ++it) cout << ' ' << *it ;
 	cout << endl;
 
-	cout << "  " << sex2 << ':';
+	cout << "  ";
+	
+	if (consultar_SEXE()) cout << 'Y';
+	else cout << 'X';
+	cout << ':';
 	for(std::list<bool>::const_iterator it = COD_GEN[0].second.begin(); it != COD_GEN[0].second.end(); ++it) cout << ' ' << *it;
 	cout << endl;
 

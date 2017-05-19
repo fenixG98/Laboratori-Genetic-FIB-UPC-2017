@@ -47,7 +47,7 @@ public:
 	 \coste Constante  */
 	int consultar_punt_tall(int i) const;
 
-	pair<bool,bool> consultar_ovul_esper(int i);
+	pair<bool,bool> consultar_ovul_esper(int i) const;
 
 	/** @brief Consulta la longitud del cromosoma sexual Y.
 	 \pre <em>cierto</em>

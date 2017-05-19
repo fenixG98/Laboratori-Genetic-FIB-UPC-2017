@@ -3,7 +3,6 @@
 par_rep::par_rep(especie &esp)
 {
 	pr = vector <pair<pair<bool,bool>,int> > (esp.consultar_numero_parells()+1);
-	
 	lenRep = esp.consultar_longitud_repro();
 }
 
@@ -14,7 +13,7 @@ int par_rep::consultar_punt_tall(int i) const
 	return pr[i].second;
 }
 
-pair<bool,bool> par_rep::consultar_ovul_esper(int i)
+pair<bool,bool> par_rep::consultar_ovul_esper(int i) const
 {
 	pair<bool,bool> res;
 

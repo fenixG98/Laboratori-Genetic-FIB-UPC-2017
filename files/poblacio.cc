@@ -1,98 +1,22 @@
 #include "poblacio.hh"
 
-poblacio::poblacio() 
+// Privats
+
+void poblacio::generar_arbre_genealogic(Arbre<string> &a, map<string,persona>::const_iterator it)
 {
-	nind = 0;
-}
+	Arbre<string> a1;
+	Arbre<string> a2;
 
-poblacio::~poblacio() {}
-
-void poblacio::afegir_individu(const string nom, const individu& ind)
-{
-	vind[nom].ind=ind;
-	vind[nom].pare=vind.end();
-	vind[nom].mare=vind.end();
-
-	++nind;
-}
-
-bool poblacio::compatibles(const string a,const string b) 
-{
-	if (vind.find(a)->second.ind.consultar_SEXE() == vind.find(b)->second.ind.consultar_SEXE()) return false;
-	if (vind.find(a)->second.ind.consultar_SEXE() and not vind.find(b)->second.ind.consultar_SEXE()) return false;
-	if (vind.find(a)->second.ind.te_pares() and vind.find(b)->second.ind.te_pares()) if((vind.find(a)->second.mare->first == vind.find(b)->second.mare->first)or(vind.find(a)->second.pare->first == vind.find(b)->second.pare->first))return false;
-	
-	bool x, y;
-	x = comprobar_ascendent(a,b);
-	y = comprobar_ascendent(b,a);
-
-	return not (x or y);
-}
-
-bool poblacio::comprobar_ascendent(string x, string marca)
-{
-	bool b;
-
-	if (x==marca) return true;
-	if (vind.find(x)->second.mare == vind.end()) return false;
-
-	string a1 = vind.find(x)->second.mare->first;
-	string a2 = vind.find(x)->second.pare->first;
-	b=comprobar_ascendent(a1,marca);
-
-	if (not b) b=comprobar_ascendent(a2,marca);
-
-	return b;
-}
-
-void poblacio::afegir_pares(string a, string b, string c)
-{
-	vind.find(c)->second.mare = vind.find(a);
-	vind.find(c)->second.pare = vind.find(b);
-}
-
-bool poblacio::existeix_individu(const string nom) const
-{
-	return vind.count(nom)!=0;
-}
-
-individu poblacio::individu_nom(const string nom) const
-{
-	return vind.find(nom)->second.ind;
-}
-
-void poblacio::llegir(const especie &esp)
-{
-	cin >> nind;
-
-	for (int a = 0; a < nind; ++a)
+	if(it!=vind.end())
 	{
-		string nom;
-		cin >> nom;
-				
-		individu ind;
-		ind.llegir(esp);
+		generar_arbre_genealogic(a1, it->second.pare);
+		generar_arbre_genealogic(a2, it->second.mare);
 
-		vind[nom].ind=ind;
-		vind[nom].pare=vind.end();
-		vind[nom].mare=vind.end();
+		a.plantar(it->first,a1,a2);
 	}
 }
 
-void poblacio::escriure() const
-{
-	for(map<string,persona>::const_iterator it = vind.begin(); it != vind.end(); ++it)
-	{
-		cout << "  " << it->first << " X" << it->second.ind.consultar_crom_y() << " (";
-
-		if (not it->second.ind.te_pares()) cout << "$,$";
-		else cout << it->second.pare->first << ',' << it->second.mare->first;	
-
-		cout << ')' << endl;
-	}
-}
-
-void poblacio::r_arbre_genealogic(queue<string> &q, int cont) 
+void poblacio::r_arbre_genealogic(queue<string> &q, int cont)
 {
 	if(not q.empty())
 	{
@@ -118,12 +42,67 @@ void poblacio::r_arbre_genealogic(queue<string> &q, int cont)
 	}
 }
 
-void poblacio::escriure_arbre_genealogic(const string nom) 
+bool poblacio::r_comprobar_ascendent(string x, string marca)
 {
-	queue<string> qu;
-	qu.push(nom);
+	bool b;
 
-	r_arbre_genealogic(qu, 0);
+	if (x==marca) return true;
+	if (vind.find(x)->second.mare == vind.end()) return false;
+
+	string a1 = vind.find(x)->second.mare->first;
+	string a2 = vind.find(x)->second.pare->first;
+	b=r_comprobar_ascendent(a1,marca);
+
+	if (not b) b=r_comprobar_ascendent(a2,marca);
+
+	return b;
+}
+
+// Publics
+
+poblacio::poblacio() 
+{
+	nind = 0;
+}
+
+poblacio::~poblacio() {}
+
+void poblacio::afegir_individu(const string nom, const individu& ind)
+{
+	vind[nom].ind=ind;
+	vind[nom].pare=vind.end();
+	vind[nom].mare=vind.end();
+
+	++nind;
+}
+
+void poblacio::afegir_pares(const string a, const string b, const string c)
+{
+	vind.find(c)->second.mare = vind.find(a);
+	vind.find(c)->second.pare = vind.find(b);
+}
+
+bool poblacio::compatibles(const string a,const string b) 
+{
+	if (vind.find(a)->second.ind.consultar_SEXE() == vind.find(b)->second.ind.consultar_SEXE()) return false;
+	if (vind.find(a)->second.ind.consultar_SEXE() and not vind.find(b)->second.ind.consultar_SEXE()) return false;
+	if (vind.find(a)->second.ind.te_pares() and vind.find(b)->second.ind.te_pares()) if((vind.find(a)->second.mare->first == vind.find(b)->second.mare->first)or(vind.find(a)->second.pare->first == vind.find(b)->second.pare->first))return false;
+	
+	bool x, y;
+	x = r_comprobar_ascendent(a,b);
+	y = r_comprobar_ascendent(b,a);
+
+	return not (x or y);
+}
+
+individu poblacio::individu_nom(const string nom) const
+{
+	return vind.find(nom)->second.ind;
+}
+
+bool poblacio::existeix_individu(const string nom) const
+{
+	return vind.count(nom)!=0;
 }
 
 arbre_parcial poblacio::arbre_genealogic(const string nom)
@@ -135,16 +114,44 @@ arbre_parcial poblacio::arbre_genealogic(const string nom)
 	return res;
 }
 
-void poblacio::generar_arbre_genealogic(Arbre<string> &a, map<string,persona>::const_iterator it)
- {	
-	Arbre<string> a1;
-	Arbre<string> a2;
+void poblacio::llegir(const especie &esp)
+{
+	cin >> nind;
 
- 	if(it!=vind.end())
- 	{
-		generar_arbre_genealogic(a1, it->second.pare);
- 		generar_arbre_genealogic(a2, it->second.mare);
-		 
-		a.plantar(it->first,a1,a2);
- 	}
+	for (int a = 0; a < nind; ++a)
+	{
+		string nom;
+		cin >> nom;
+				
+		individu ind;
+		ind.llegir(esp);
+
+		vind[nom].ind=ind;
+		vind[nom].pare=vind.end();
+		vind[nom].mare=vind.end();
+	}
+}
+
+void poblacio::escriure() const
+{
+	for(map<string,persona>::const_iterator it = vind.begin(); it != vind.end(); ++it)
+	{
+		cout << "  " << it->first << " X";
+		if(it->second.ind.consultar_SEXE()) cout << "Y";
+		else cout << "X";
+		cout << " (";
+
+		if (not it->second.ind.te_pares()) cout << "$,$";
+		else cout << it->second.pare->first << ',' << it->second.mare->first;	
+
+		cout << ')' << endl;
+	}
+}
+
+void poblacio::escriure_arbre_genealogic(const string nom) 
+{
+	queue<string> qu;
+	qu.push(nom);
+
+	r_arbre_genealogic(qu, 0);
 }

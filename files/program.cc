@@ -33,7 +33,6 @@ int main()
 	POBL.llegir(esp);
 
 	string comando;
-
 	while (cin >> comando)
 	{
 		if (comando == "anadir_individuo")
@@ -106,7 +105,7 @@ int main()
 			arbre_parcial parcial;
 			parcial.llegir();
 			
-			string nom =  parcial.arrel();
+			string nom =  parcial.consultar_NOM();
 			cout << "completar_arbol_genealogico " << nom << endl;
 			
 			if(POBL.existeix_individu(nom))
