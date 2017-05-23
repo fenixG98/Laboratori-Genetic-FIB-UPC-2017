@@ -21,9 +21,16 @@ class especie
 
 private:
 
+	/**@brief Numero de pares de cromosomas normales */
 	int N;
+
+	/**@brief Longitud del cromosoma X  */
 	int lx;
+
+	/**@brief Longitud del cromosoma Y */
 	int ly;
+
+	/**@brief  Longitud del cruce y de los cromosomas normales */
 	vector<int> l;
 
 public:

@@ -2,15 +2,15 @@
 
 // Privats
 
-void poblacio::generar_arbre_genealogic(Arbre<string> &a, map<string,persona>::const_iterator it)
+void poblacio::r_generar_arbre_genealogic(Arbre<string> &a, map<string,persona>::const_iterator it)
 {
 	Arbre<string> a1;
 	Arbre<string> a2;
 
 	if(it!=vind.end())
 	{
-		generar_arbre_genealogic(a1, it->second.pare);
-		generar_arbre_genealogic(a2, it->second.mare);
+		r_generar_arbre_genealogic(a1, it->second.pare);
+		r_generar_arbre_genealogic(a2, it->second.mare);
 
 		a.plantar(it->first,a1,a2);
 	}
@@ -108,7 +108,7 @@ bool poblacio::existeix_individu(const string nom) const
 arbre_parcial poblacio::arbre_genealogic(const string nom)
 {
 	Arbre<string> aux;
-	generar_arbre_genealogic(aux,vind.find(nom));
+	r_generar_arbre_genealogic(aux,vind.find(nom));
 	arbre_parcial res (aux);
 
 	return res;

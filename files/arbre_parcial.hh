@@ -1,5 +1,5 @@
 /** @file especie.hh
- @brief Especificación de la clase especie
+ @brief Especificacion de la clase especie
  */
 
 #ifndef ARBRE_PARCIAL_HH
@@ -21,33 +21,73 @@ class arbre_parcial
 
 private:
 
+	/** @brief Arbol genealogico de una persona */
 	Arbre<string> ap;
-
-	void llegir_arbre_string(Arbre<string>& a);
-
-	void escriure_arbre_string(Arbre<string>& a);
-
-	bool r_es_parcial ( Arbre<string> &a,  Arbre<string> &b, Arbre<string> &res);
-
-	void fills_mod(Arbre<string> &a, Arbre<string> &b);
 
 public:
 
 	//Constructores
-	
+
+	/** @brief Creadora por defecto.
+	 Se ejecuta automáticamente al declarar una poblacion.
+	 \pre <em>cierto</em>
+	 \post El resultado es un arbol_parcial vacio */
 	arbre_parcial();
 
+	/** @brief Creadora por defecto.
+	 Se ejecuta automáticamente al declarar una poblacion.
+	 \pre <em>cierto</em>
+	 \post El resultado es un arbol_parcial copia de el arbol copia */
 	arbre_parcial(const Arbre<string> &copia);
 
+
+	/** @brief Destructora por defecto.
+	 \pre <em>cierto</em>
+	 \post Se destruye el arbol*/
 	~arbre_parcial();
 
+	/** @brief Consulta el nombre del indiviuo raiz.
+	 \pre <em>cierto</em>
+	 \post El resultado es el nombre de la raiz del arbol */
 	string consultar_NOM() const;
 
+	/** @brief Verifica si el p.i. es un arbol parcial de ag y si lo es modifica el p.i. añadiendo los nodos necesarios
+	 \pre <em>ag no es vacio, p.i. no es vacio</em>
+	 \post p.i. pasa a contener un arbol completo modificado si p.i. es parcial de g*/
 	bool es_parcial(const arbre_parcial &ag);
 
+
+	/** @brief Lee un arbol binario
+	 \pre <em>p.i. es vacio, esta preparado en el canal estandar de entrada un arbol en preorden</em>
+	 \post p.i. pasa a contener el arbol binario leido*/
 	void llegir();
 
+	/** @brief Escribe un arbol binario
+	 \pre <em>p.i. no es vacio</em>
+	 \post Se escribe por el canal estandar de salida un arbol binario en preorden*/
 	void escriure();
+
+private:
+	/** @brief Lee de forma recursiva un arbol binario
+	 \pre <em>a es vacio, esta preparado en el canal estandar de entrada un arbol en preorden</em>
+	 \post a pasa a contener un arbol binario */
+	void llegir_arbre_string(Arbre<string>& a);
+
+	/** @brief Escribe de forma recursiva un arbol binario
+	 \pre <em>a no es vacio</em>
+	 \post Se escribe por el canal estandar de salida un arbol binario en preorden*/
+	void escriure_arbre_string(Arbre<string>& a);
+
+	/** @brief Verifica si b es un arbol parcial de a y si lo es escribe el completo en res
+	 \pre <em>b no es vacio, res es vacio</em>
+	 \post res pasa a contener un arbol completo modificado si b es parcial de a*/
+	bool r_es_parcial ( Arbre<string> &a,  Arbre<string> &b, Arbre<string> &res);
+
+	/** @brief Copia el arbol b en a con las raices modificadas
+	 \pre <em>b no es vacio, a es vacio</em>
+	 \post a es una copia de b con las raices modificadas*/
+	void fills_mod(Arbre<string> &a, Arbre<string> &b);
+
 };
 
 #endif

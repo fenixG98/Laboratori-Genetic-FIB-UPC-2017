@@ -24,15 +24,14 @@ class individu
 {
 
 private:
-
+	/**@brief Informacion genetica del individuo */
 	vector<pair<list<bool>, list<bool> > > COD_GEN ;
 
+	/**@brief Sexo del individuo */
 	bool SEXE;
 
+	/**@brief Informacion sobre si tiene padres o no*/
 	bool amb_pares;
-
-	list<bool> creurar_llistes(int l, int n, const list<bool> &l1, const list<bool> &l2);
-
 
 public:
 
@@ -41,8 +40,7 @@ public:
 	/** @brief Creadora por defecto.
 	 Se ejecuta automáticamente al declarar una poblacion.
 	 \pre <em>cierto</em>
-	 \post El resultado es una individuo sin especie , sin nombre ni codigo genetico ni padres.
-	 \coste Constante */
+	 \post El resultado es una individuo sin especie , sin nombre ni codigo genetico ni padres.  */
 	individu();
 
 	/** @brief Creadora a partir de dos individuos.
@@ -87,5 +85,11 @@ public:
 	 \coste */
 	void escriure() const;
 
+private:
+
+	/** @brief Cruza dos listas segun unos parametros.
+	 \pre <em>l1 y l2 son listas no vacias y l <= n </em>
+	 \post Devuelve una lista resultante del cruce de l1 y l2 */
+	list<bool> creurar_llistes(int l, int n, const list<bool> &l1, const list<bool> &l2);
 };
 #endif

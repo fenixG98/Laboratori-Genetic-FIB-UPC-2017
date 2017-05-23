@@ -18,7 +18,10 @@ class par_rep
 
 private:
 
+	/**@brief Longitud del cruce */
 	int lenRep;
+
+	/**@brief Parametros de reproduccion*/
 	vector <pair<pair<bool,bool>,int> >pr;
 
 
@@ -29,14 +32,12 @@ public:
 	/** @brief Creadora por defecto.
 	 Se ejecuta automáticamente al declarar una especie.
 	 \pre <em>cierto</em>
-	 \post El resultado es una especie sin descripcion
-	 \coste Constante */
+	 \post El resultado es una especie sin descripcion */
 	par_rep(especie &esp);
 
 	/** @brief Destructora por defecto.
 	 \pre <em>cierto</em>
-	 \post Destruye la especie
-	 \coste Constante*/
+	 \post Destruye la especie*/
 	~par_rep();
 
 	//Consultores
@@ -47,18 +48,21 @@ public:
 	 \coste Constante  */
 	int consultar_punt_tall(int i) const;
 
+	/** @brief Consula el ovulo y cromosoma a cruzar.
+	 \pre <em>cierto</em>
+	 \post El resultado es la posicion del ovulo y el espermatozoide*/
 	pair<bool,bool> consultar_ovul_esper(int i) const;
 
-	/** @brief Consulta la longitud del cromosoma sexual Y.
+	/** @brief Consulta la longitud del cruce.
 	 \pre <em>cierto</em>
-	 \post El resultado es la longitud del cromosoma Y
-	 \coste Constante  */
+	 \post El resultado es la longitud del cruce */
 	int consultar_len_rep() const;
-
 
 	// Lectura i escriptura
 
-
+	/** @brief Consulta la longitud del cruce.
+	 \pre <em>cierto</em>
+	 \post El p.i. pasa a contener los parametros leidos por el canal estandar de entrada */
 	void llegir_parametres_reproduccio();
 	
 	

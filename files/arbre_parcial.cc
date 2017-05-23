@@ -1,7 +1,17 @@
 #include "arbre_parcial.hh"
 
-// Private
+// Constructoras y destructoras
 
+arbre_parcial::arbre_parcial() {}
+
+arbre_parcial::arbre_parcial(const Arbre<string> &original)
+{
+	this->ap = original;
+}
+
+arbre_parcial::~arbre_parcial() {}
+
+// Privadas
 
 void arbre_parcial::llegir_arbre_string(Arbre<string>& a){
 	Arbre<string> a1;
@@ -86,16 +96,7 @@ void arbre_parcial::fills_mod(Arbre<string> &a, Arbre<string> &b)
 	}
 }
 
-
-arbre_parcial::arbre_parcial() {}
-
-arbre_parcial::arbre_parcial(const Arbre<string> &original)
-{
-	Arbre<string> aux(original);
-	this->ap = aux;
-}
-
-arbre_parcial::~arbre_parcial() {}
+// Publicas
 
 string arbre_parcial::consultar_NOM() const
 {
