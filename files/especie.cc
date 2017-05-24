@@ -1,40 +1,44 @@
+/** @file especie.cc
+    @brief Codigo de la clase c_especie
+*/
+
 #include "especie.hh"
 
 
-especie::especie()
+c_especie::c_especie()
 {
 	N = lx = ly = 0;
 	l = vector<int> (0);
 }
 
-especie::~especie(){}
+c_especie::~c_especie(){}
 
-int especie::consultar_numero_parells() const
+int c_especie::consultar_numero_parells() const
 {
 	return N;
 }
 
-int especie::consultar_longitud_x() const
+int c_especie::consultar_longitud_x() const
 {
 	return lx;
 }
 
-int especie::consultar_longitud_y() const
+int c_especie::consultar_longitud_y() const
 {
 	return ly;
 }
 
-int especie::consultar_longitud_i(int i) const
+int c_especie::consultar_longitud_i(int i) const
 {
 	return l[i];
 }
 
-int especie::consultar_longitud_repro() const
+int c_especie::consultar_longitud_repro() const
 {
 	return l[0];
 }
 
-void especie::llegir()
+void c_especie::llegir()
 {
 	int x;
 	cin >> N;
@@ -44,6 +48,6 @@ void especie::llegir()
 		cin >> x;
 		l.push_back(x);
 	}
-	
+
 	cin >> lx >> ly;
 }

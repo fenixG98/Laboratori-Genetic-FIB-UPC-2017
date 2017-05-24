@@ -1,8 +1,11 @@
+/** @file individu.cc
+    @brief Codigo de la clase c_individu
+*/
 #include "individu.hh"
 
 // Privats
 
-list<bool> individu::creurar_llistes(int l, int n, const list<bool> &l1, const list<bool> &l2)
+list<bool> c_individu::creurar_llistes(int l, int n, const list<bool> &l1, const list<bool> &l2)
 {
 	list <bool> aux;
 	int cont = 0;
@@ -38,12 +41,12 @@ list<bool> individu::creurar_llistes(int l, int n, const list<bool> &l1, const l
 
 // Publics
 
-individu::individu()
+c_individu::c_individu()
 {
 	amb_pares = false;
 }
 
-individu::individu(par_rep &pr,const individu &a, const individu &b)
+c_individu::c_individu(par_rep &pr,const c_individu &a, const c_individu &b)
 {
 	amb_pares = true;
 
@@ -66,7 +69,7 @@ individu::individu(par_rep &pr,const individu &a, const individu &b)
 			COD_GEN[i].first = creurar_llistes(int(aux1.size()), pr.consultar_punt_tall(i), aux1, aux2);
 			COD_GEN[i].second = creurar_llistes(int(aux2.size()), pr.consultar_punt_tall(i), aux2, aux1);
 		}
-		
+
 		else
 		{
 			COD_GEN[i].first = creurar_llistes(pr.consultar_len_rep(), pr.consultar_punt_tall(i), aux1, aux2);
@@ -75,19 +78,19 @@ individu::individu(par_rep &pr,const individu &a, const individu &b)
 	}
 }
 
-individu::~individu(){}
+c_individu::~c_individu(){}
 
-bool individu::consultar_SEXE() const
+bool c_individu::consultar_SEXE() const
 {
 	return SEXE;
 }
 
-bool individu::te_pares() const
+bool c_individu::te_pares() const
 {
 	return amb_pares;
 }
 
-void individu::llegir(const especie &esp)
+void c_individu::llegir(const c_especie &esp)
 {
 	COD_GEN = vector<pair<list<bool>, list<bool> > > (esp.consultar_numero_parells()+1);
 
@@ -117,7 +120,7 @@ void individu::llegir(const especie &esp)
 
 	}
 
-	for (int i = 1; i <= esp.consultar_numero_parells(); ++i) 
+	for (int i = 1; i <= esp.consultar_numero_parells(); ++i)
 	{
 		for (int j = 0; j < esp.consultar_longitud_i(i); ++j)
 		{
@@ -132,14 +135,14 @@ void individu::llegir(const especie &esp)
 	}
 }
 
-void individu::escriure() const
+void c_individu::escriure() const
 {
 	cout << "  " << "X:";
 	for(std::list<bool>::const_iterator it = COD_GEN[0].first.begin(); it != COD_GEN[0].first.end(); ++it) cout << ' ' << *it ;
 	cout << endl;
 
 	cout << "  ";
-	
+
 	if (consultar_SEXE()) cout << 'Y';
 	else cout << 'X';
 	cout << ':';

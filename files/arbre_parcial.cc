@@ -1,3 +1,8 @@
+/** @file arbre_parcial.cc
+    @brief Codigo de la clase arbre_parcial
+*/
+
+
 #include "arbre_parcial.hh"
 
 // Constructoras y destructoras
@@ -125,6 +130,3 @@ void arbre_parcial::escriure()
 	escriure_arbre_string(ap);
 	cout << endl;
 }
-
-
-

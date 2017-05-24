@@ -1,6 +1,10 @@
+/** @file parametres_repro.cc
+    @brief Codigo de la clase par_rep
+*/
+
 #include "parametres_repro.hh"
 
-par_rep::par_rep(especie &esp)
+par_rep::par_rep(c_especie &esp)
 {
 	pr = vector <pair<pair<bool,bool>,int> > (esp.consultar_numero_parells()+1);
 	lenRep = esp.consultar_longitud_repro();

@@ -7,10 +7,10 @@ program.exe: program.o poblacio.o individu.o especie.o parametres_repro.o arbre_
 program.o: program.cc poblacio.hh individu.hh especie.hh parametres_repro.hh arbre_parcial.hh
 	g++ -c program.cc $(OPCIONS)
 
-poblacio.o: poblacio.cc poblacio.hh 
+poblacio.o: poblacio.cc poblacio.hh
 	g++ -c poblacio.cc $(OPCIONS)
 
-individu.o: individu.cc individu.hh 
+individu.o: individu.cc individu.hh
 	g++ -c individu.cc $(OPCIONS)
 
 especie.o: especie.cc especie.hh
@@ -27,4 +27,7 @@ clean:
 	rm *.exe
 
 practica.tar:
-	tar -cvf practica.tar *.hh *.cc makefile
+	tar -cvf practica.tar *.hh *.cc html.zip makefile
+
+practica_ultima.tar:
+	tar -cvf practica.tar *.hh *.cc html.zip makefile

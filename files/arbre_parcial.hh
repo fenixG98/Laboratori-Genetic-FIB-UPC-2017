@@ -1,5 +1,5 @@
-/** @file especie.hh
- @brief Especificacion de la clase especie
+/** @file arbre_parcial.hh
+ @brief Especificacion de la clase arbre_parcial
  */
 
 #ifndef ARBRE_PARCIAL_HH
@@ -10,10 +10,10 @@
 #include "Arbre.hh"
 #endif
 
-/** @class especie
- @brief Representa una especie de individuo.
+/** @class arbre_parcial
+ @brief Representa un arbol genealogico.
 
- Puede contener una descripcion de la especie. Puede usarse para crear una poblacion de esta especie.
+ Puede contener un arbol parcial o completo de una persona.
  */
 using namespace std;
 class arbre_parcial
@@ -21,7 +21,7 @@ class arbre_parcial
 
 private:
 
-	/** @brief Arbol genealogico de una persona */
+	/** @brief Arbol genealogico.*/
 	Arbre<string> ap;
 
 public:
@@ -29,42 +29,42 @@ public:
 	//Constructores
 
 	/** @brief Creadora por defecto.
-	 Se ejecuta automáticamente al declarar una poblacion.
-	 \pre <em>cierto</em>
-	 \post El resultado es un arbol_parcial vacio */
+	 Se ejecuta automaticamente al declarar un arbol.
+	 \pre <em>cierto.</em>
+	 \post El resultado es un arbol vacio. */
 	arbre_parcial();
 
 	/** @brief Creadora por defecto.
-	 Se ejecuta automáticamente al declarar una poblacion.
-	 \pre <em>cierto</em>
-	 \post El resultado es un arbol_parcial copia de el arbol copia */
+	 Se ejecuta automáticamente al declarar un arbol.
+	 \pre <em>cierto.</em>
+	 \post El resultado es un arbol_parcial copia de el arbol copia. */
 	arbre_parcial(const Arbre<string> &copia);
 
 
 	/** @brief Destructora por defecto.
-	 \pre <em>cierto</em>
-	 \post Se destruye el arbol*/
+	 \pre <em>cierto.</em>
+	 \post Se destruye el arbol.*/
 	~arbre_parcial();
 
-	/** @brief Consulta el nombre del indiviuo raiz.
-	 \pre <em>cierto</em>
-	 \post El resultado es el nombre de la raiz del arbol */
+	/** @brief Consulta el nombre de la raiz.
+	 \pre <em>p.i. no es vacio.</em>
+	 \post El resultado es el nombre de la raiz del arbol.*/
 	string consultar_NOM() const;
 
-	/** @brief Verifica si el p.i. es un arbol parcial de ag y si lo es modifica el p.i. añadiendo los nodos necesarios
-	 \pre <em>ag no es vacio, p.i. no es vacio</em>
-	 \post p.i. pasa a contener un arbol completo modificado si p.i. es parcial de g*/
+	/** @brief Verifica si el p.i. es un arbol parcial de ag y si lo es modifica el p.i. añadiendo los nodos necesarios.
+	 \pre <em>ag no es vacio, p.i. no es vacio.</em>
+	 \post p.i. pasa a contener un arbol completo modificado si p.i. es parcial de ag.*/
 	bool es_parcial(const arbre_parcial &ag);
 
 
-	/** @brief Lee un arbol binario
-	 \pre <em>p.i. es vacio, esta preparado en el canal estandar de entrada un arbol en preorden</em>
-	 \post p.i. pasa a contener el arbol binario leido*/
+	/** @brief Lee un arbol binario.
+	 \pre <em>p.i. es vacio, esta preparado en el canal estandar de entrada un arbol en preorden.</em>
+	 \post p.i. pasa a contener el arbol binario leido.*/
 	void llegir();
 
-	/** @brief Escribe un arbol binario
-	 \pre <em>p.i. no es vacio</em>
-	 \post Se escribe por el canal estandar de salida un arbol binario en preorden*/
+	/** @brief Escribe un arbol binario.
+	 \pre <em>p.i. no es vacio.</em>
+	 \post Se escribe por el canal estandar de salida un arbol binario en preorden.*/
 	void escriure();
 
 private:
@@ -79,7 +79,7 @@ private:
 	void escriure_arbre_string(Arbre<string>& a);
 
 	/** @brief Verifica si b es un arbol parcial de a y si lo es escribe el completo en res
-	 \pre <em>b no es vacio, res es vacio</em>
+	 \pre <em>a y b no es vacio, res es vacio</em>
 	 \post res pasa a contener un arbol completo modificado si b es parcial de a*/
 	bool r_es_parcial ( Arbre<string> &a,  Arbre<string> &b, Arbre<string> &res);
 
