@@ -71,12 +71,12 @@ private:
 	/** @brief Lee de forma recursiva un arbol binario
 	 \pre <em>a es vacio, esta preparado en el canal estandar de entrada un arbol en preorden</em>
 	 \post a pasa a contener un arbol binario */
-	void llegir_arbre_string(Arbre<string>& a);
+	static void llegir_arbre_string(Arbre<string>& a);
 
 	/** @brief Escribe de forma recursiva un arbol binario
 	 \pre <em>a no es vacio</em>
 	 \post Se escribe por el canal estandar de salida un arbol binario en preorden*/
-	void escriure_arbre_string(Arbre<string>& a);
+	static void escriure_arbre_string(Arbre<string>& a);
 
 	/** @brief Verifica si b es un arbol parcial de a y si lo es escribe el completo en res
 	 \pre <em>a y b no es vacio, res es vacio</em>

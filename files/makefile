@@ -27,7 +27,7 @@ clean:
 	rm *.exe
 
 practica.tar:
-	tar -cvf practica.tar *.hh *.cc html.zip makefile
+	tar -cvf practica.tar *.hh *.cc makefile
 
 practica_ultima.tar:
 	tar -cvf practica.tar *.hh *.cc html.zip makefile

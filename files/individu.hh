@@ -86,6 +86,6 @@ private:
 	/** @brief Cruza dos listas segun unos parametros.
 	 \pre <em>l1 y l2 son listas no vacias y l <= n. </em>
 	 \post Devuelve una lista resultante del cruce de l1 y l2. */
-	list<bool> creurar_llistes(int l, int n, const list<bool> &l1, const list<bool> &l2);
+	static list<bool> creurar_llistes(int l, int n, const list<bool> &l1, const list<bool> &l2);
 };
 #endif
